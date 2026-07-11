@@ -1,1 +1,4 @@
-{"environment":"UAT"}
+{
+  "environment": "UAT",
+  "domainPath": "uat.company.local"
+}

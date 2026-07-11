@@ -1,1 +1,4 @@
-{"environment":"DEV"}
+{
+  "environment": "DEV",
+  "domainPath": "dev.company.local"
+}
