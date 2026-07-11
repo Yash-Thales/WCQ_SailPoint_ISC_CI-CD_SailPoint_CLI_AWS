@@ -1,35 +1,120 @@
-name: Validate Repository
+name: Validate SailPoint ISC Repository
 
 on:
   workflow_dispatch:
+
   push:
     branches:
-      - main
       - dev
       - uat
+      - main
+
+  pull_request:
+    branches:
+      - dev
+      - uat
+      - main
 
 jobs:
+
   validate:
 
     runs-on: ubuntu-latest
 
     steps:
 
+      ######################################################################
+      # Checkout Repository
+      ######################################################################
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Show Repository Structure
+      ######################################################################
+      # Install Validation Tools
+      ######################################################################
+
+      - name: Install jq
         run: |
-          pwd
-          find . -type f | sort
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      ######################################################################
+      # Validate Required Folder Structure
+      ######################################################################
+
+      - name: Validate Folder Structure
+        run: |
+
+          set -euo pipefail
+
+          REQUIRED_DIRS=(
+            ".github/workflows"
+            "config"
+            "config/sources"
+            "config/transforms"
+            "config/workflows"
+            "config/rules"
+            "config/roles"
+            "config/access-profiles"
+            "config/identity-profiles"
+            "config/applications"
+            "config/policies"
+            "config/branding"
+            "environments"
+            "scripts"
+            "exports"
+            "dr-snapshots"
+          )
+
+          for DIR in "${REQUIRED_DIRS[@]}"
+          do
+            if [[ ! -d "$DIR" ]]
+            then
+              echo "Missing required directory: $DIR"
+              exit 1
+            fi
+          done
+
+          echo "✅ Folder structure validated"
+
+      ######################################################################
+      # Validate Environment Files
+      ######################################################################
 
       - name: Validate Environment Files
         run: |
-          test -f environments/dev.json
-          test -f environments/uat.json
-          test -f environments/prod.json
 
-          echo "Environment files validated"
+          set -euo pipefail
 
-      - name: Validation Successful
-        run: echo "Repository validation passed"
+          REQUIRED_FILES=(
+            "environments/dev.json"
+            "environments/uat.json"
+            "environments/prod.json"
+          )
+
+          for FILE in "${REQUIRED_FILES[@]}"
+          do
+            if [[ ! -f "$FILE" ]]
+            then
+              echo "Missing environment file: $FILE"
+              exit 1
+            fi
+          done
+
+          echo "✅ Environment files validated"
+
+      ######################################################################
+      # Validate Workflow Files
+      ######################################################################
+
+      - name: Validate Workflow Files
+        run: |
+
+          set -euo pipefail
+
+          REQUIRED_FILES=(
+            ".github/workflows/validate.yml"
+            ".github/workflows/export.yml"
+            ".github/workflows/deploy.yml"
+     
