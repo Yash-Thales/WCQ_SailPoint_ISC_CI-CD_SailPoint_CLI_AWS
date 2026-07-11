@@ -1,0 +1,35 @@
+name: Validate Repository
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
+      - uat
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Show Repository Structure
+        run: |
+          pwd
+          find . -type f | sort
+
+      - name: Validate Environment Files
+        run: |
+          test -f environments/dev.json
+          test -f environments/uat.json
+          test -f environments/prod.json
+
+          echo "Environment files validated"
+
+      - name: Validation Successful
+        run: echo "Repository validation passed"
