@@ -14,7 +14,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Export Placeholder
+      - name: Export Workflow Started
         run: |
-          echo "Future SailPoint Export Workflow"
-          echo "Repository structure validated."
+          echo "Export workflow started"
+          echo "Repository structure validated"
+
+      - name: Create Export Folder
+        run: |
+          mkdir -p exports
+
+      - name: Upload Export Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sailpoint-export
+          path: exports/
