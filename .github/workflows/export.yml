@@ -1,7 +1,12 @@
 name: Export SailPoint ISC Configuration
 
 on:
+
   workflow_dispatch:
+
+  push:
+    branches:
+      - dev
 
 jobs:
 
@@ -9,22 +14,58 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      SAILPOINT_CLI_VERSION: "2.2.12"
+
     steps:
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    ########################################################################
+    # Checkout Repository
+    ########################################################################
 
-      - name: Export Workflow Started
-        run: |
-          echo "Export workflow started"
-          echo "Repository structure validated"
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Create Export Folder
-        run: |
-          mkdir -p exports
+    ########################################################################
+    # Install Utilities
+    ########################################################################
 
-      - name: Upload Export Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: sailpoint-export
-          path: exports/
+    - name: Install Utilities
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl jq unzip
+
+    ########################################################################
+    # Resolve Environment
+    ########################################################################
+
+    - name: Resolve Environment
+      run: |
+
+        if [[ "${GITHUB_REF_NAME}" == "main" ]]; then
+
+          echo "SAIL_BASE_URL=${{ secrets.PROD_TENANT_URL }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_ID=${{ secrets.PROD_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_SECRET=${{ secrets.PROD_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+          echo "ENV_NAME=PROD" >> $GITHUB_ENV
+
+        elif [[ "${GITHUB_REF_NAME}" == "uat" ]]; then
+
+          echo "SAIL_BASE_URL=${{ secrets.UAT_TENANT_URL }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_ID=${{ secrets.UAT_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_SECRET=${{ secrets.UAT_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+          echo "ENV_NAME=UAT" >> $GITHUB_ENV
+
+        else
+
+          echo "SAIL_BASE_URL=${{ secrets.DEV_TENANT_URL }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_ID=${{ secrets.DEV_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_SECRET=${{ secrets.DEV_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+          echo "ENV_NAME=DEV" >> $GITHUB_ENV
+
+        fi
+
+    #########################################################
