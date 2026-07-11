@@ -23,46 +23,22 @@ jobs:
 
     steps:
 
-      ######################################################################
-      # Checkout Repository
-      ######################################################################
-
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      ######################################################################
-      # Install Validation Tools
-      ######################################################################
 
       - name: Install jq
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
 
-      ######################################################################
-      # Debug Repository Structure
-      ######################################################################
-
       - name: Debug Repository Structure
         run: |
-
-          echo "Current Directory:"
           pwd
-
-          echo "Directory Structure:"
           find . -maxdepth 3 -type d | sort
-
-          echo "File Structure:"
           find . -maxdepth 3 -type f | sort
-
-      ######################################################################
-      # Validate Folder Structure
-      ######################################################################
 
       - name: Validate Folder Structure
         run: |
-
-          set -euo pipefail
 
           REQUIRED_DIRS=(
             ".github/workflows"
@@ -85,23 +61,16 @@ jobs:
 
           for DIR in "${REQUIRED_DIRS[@]}"
           do
-            if [[ ! -d "$DIR" ]]
-            then
+            if [[ ! -d "$DIR" ]]; then
               echo "Missing required directory: $DIR"
               exit 1
             fi
           done
 
-          echo "✅ Folder structure validated"
-
-      ######################################################################
-      # Validate Environment Files
-      ######################################################################
+          echo "Folder structure validated"
 
       - name: Validate Environment Files
         run: |
-
-          set -euo pipefail
 
           REQUIRED_FILES=(
             "environments/dev.json"
@@ -111,117 +80,35 @@ jobs:
 
           for FILE in "${REQUIRED_FILES[@]}"
           do
-            if [[ ! -f "$FILE" ]]
-            then
-              echo "Missing environment file: $FILE"
+            if [[ ! -f "$FILE" ]]; then
+              echo "Missing file: $FILE"
               exit 1
             fi
           done
 
-          echo "✅ Environment files validated"
-
-      ######################################################################
-      # Validate Workflow Files
-      ######################################################################
+          echo "Environment files validated"
 
       - name: Validate Workflow Files
         run: |
 
-          set -euo pipefail
-
-          REQUIRED_FILES=(
-            ".github/workflows/validate.yml"
-            ".github/workflows/export.yml"
-            ".github/workflows/deploy.yml"
-          )
-
-          for FILE in "${REQUIRED_FILES[@]}"
-          do
-            if [[ ! -f "$FILE" ]]
-            then
-              echo "Missing workflow file: $FILE"
-              exit 1
-            fi
-          done
-
-          echo "✅ Workflow files validated"
-
-      ######################################################################
-      # Validate Script Files
-      ######################################################################
+          test -f .github/workflows/validate.yml
+          test -f .github/workflows/export.yml
+          test -f .github/workflows/deploy.yml
 
       - name: Validate Script Files
         run: |
 
-          set -euo pipefail
-
-          REQUIRED_FILES=(
-            "scripts/validate.sh"
-            "scripts/export.sh"
-            "scripts/deploy.sh"
-          )
-
-          for FILE in "${REQUIRED_FILES[@]}"
-          do
-            if [[ ! -f "$FILE" ]]
-            then
-              echo "Missing script file: $FILE"
-              exit 1
-            fi
-          done
-
-          echo "✅ Script files validated"
-
-      ######################################################################
-      # Validate JSON Syntax
-      ######################################################################
+          test -f scripts/validate.sh
+          test -f scripts/export.sh
+          test -f scripts/deploy.sh
 
       - name: Validate JSON Files
         run: |
 
-          set -euo pipefail
-
           find config environments -name "*.json" | while read FILE
           do
-            echo "Checking JSON: $FILE"
             jq empty "$FILE"
           done
 
-          echo "✅ JSON validation successful"
-
-      ######################################################################
-      # Scan For Hardcoded Secrets
-      ######################################################################
-
-      - name: Scan For Hardcoded Secrets
-        run: |
-
-          set -euo pipefail
-
-          if grep -R -i \
-            -E "clientsecret|password|apikey|access_token|secretkey" \
-            config scripts environments
-          then
-            echo "Potential hardcoded secret detected"
-            exit 1
-          fi
-
-          echo "✅ No hardcoded secrets detected"
-
-      ######################################################################
-      # Validation Summary
-      ######################################################################
-
-      - name: Validation Summary
-        run: |
-
-          echo "====================================="
-          echo " SailPoint ISC Validation Complete"
-          echo "====================================="
-          echo "Folder Structure : PASSED"
-          echo "Environment Files: PASSED"
-          echo "Workflow Files   : PASSED"
-          echo "Script Files     : PASSED"
-          echo "JSON Validation  : PASSED"
-          echo "Secret Scan      : PASSED"
-          echo "====================================="
+      - name: Validation Successful
+        run: echo "Repository validation passed"

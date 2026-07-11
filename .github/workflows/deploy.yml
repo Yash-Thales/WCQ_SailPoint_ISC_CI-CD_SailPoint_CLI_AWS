@@ -1,0 +1,16 @@
+name: Deploy SailPoint ISC Configuration
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deployment Placeholder
+        run: |
+          echo "Future SailPoint Deployment Workflow"
