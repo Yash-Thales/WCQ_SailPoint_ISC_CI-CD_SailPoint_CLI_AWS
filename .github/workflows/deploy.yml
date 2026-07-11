@@ -1,7 +1,14 @@
 name: Deploy SailPoint ISC Configuration
 
 on:
+
   workflow_dispatch:
+
+  push:
+    branches:
+      - dev
+      - uat
+      - main
 
 jobs:
 
@@ -9,8 +16,203 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    environment:
+      name: ${{ github.ref_name == 'main' && 'PROD' || github.ref_name == 'uat' && 'UAT' || 'DEV' }}
+
+    env:
+      SAILPOINT_CLI_VERSION: "2.2.12"
+
     steps:
 
-      - name: Deployment Placeholder
-        run: |
-          echo "Future SailPoint Deployment Workflow"
+    ########################################################################
+    # Checkout Repository
+    ########################################################################
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    ########################################################################
+    # Install Utilities
+    ########################################################################
+
+    - name: Install Utilities
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl jq unzip
+
+    ########################################################################
+    # Resolve Environment
+    ########################################################################
+
+    - name: Resolve Environment
+      run: |
+
+        if [[ "${GITHUB_REF_NAME}" == "main" ]]; then
+
+          echo "ENV_NAME=PROD" >> $GITHUB_ENV
+
+          echo "SAIL_BASE_URL=${{ secrets.PROD_TENANT_URL }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_ID=${{ secrets.PROD_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_SECRET=${{ secrets.PROD_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+        elif [[ "${GITHUB_REF_NAME}" == "uat" ]]; then
+
+          echo "ENV_NAME=UAT" >> $GITHUB_ENV
+
+          echo "SAIL_BASE_URL=${{ secrets.UAT_TENANT_URL }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_ID=${{ secrets.UAT_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_SECRET=${{ secrets.UAT_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+        else
+
+          echo "ENV_NAME=DEV" >> $GITHUB_ENV
+
+          echo "SAIL_BASE_URL=${{ secrets.DEV_TENANT_URL }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_ID=${{ secrets.DEV_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "SAIL_CLIENT_SECRET=${{ secrets.DEV_CLIENT_SECRET }}" >> $GITHUB_ENV
+
+        fi
+
+    ########################################################################
+    # Validate Secrets
+    ########################################################################
+
+    - name: Validate Secrets
+      run: |
+
+        [[ -n "$SAIL_BASE_URL" ]] || exit 1
+        [[ -n "$SAIL_CLIENT_ID" ]] || exit 1
+        [[ -n "$SAIL_CLIENT_SECRET" ]] || exit 1
+
+        echo "Secrets validated"
+
+    ########################################################################
+    # Install SailPoint CLI
+    ########################################################################
+
+    - name: Install SailPoint CLI
+      run: |
+
+        VERSION="${SAILPOINT_CLI_VERSION}"
+
+        curl -fL \
+        "https://github.com/sailpoint-oss/sailpoint-cli/releases/download/${VERSION}/sail_${VERSION}_linux_amd64.deb" \
+        -o sailpoint-cli.deb
+
+        sudo dpkg -i sailpoint-cli.deb || true
+
+        sudo apt-get install -f -y
+
+        sail --help >/dev/null
+
+        echo "CLI installation successful"
+
+    ########################################################################
+    # OAuth Validation
+    ########################################################################
+
+    - name: Validate OAuth Connectivity
+      run: |
+
+        TOKEN_RESPONSE=$(
+          curl -fsS \
+            -X POST \
+            "${SAIL_BASE_URL}/oauth/token" \
+            -d "grant_type=client_credentials" \
+            -d "client_id=${SAIL_CLIENT_ID}" \
+            -d "client_secret=${SAIL_CLIENT_SECRET}"
+        )
+
+        ACCESS_TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r '.access_token')
+
+        if [[ -z "$ACCESS_TOKEN" || "$ACCESS_TOKEN" == "null" ]]; then
+          echo "Authentication failed"
+          exit 1
+        fi
+
+        echo "::add-mask::$ACCESS_TOKEN"
+
+        echo "Authentication successful"
+
+    ########################################################################
+    # Validate Repository Structure
+    ########################################################################
+
+    - name: Validate Config Structure
+      run: |
+
+        test -d config
+        test -d environments
+        test -d scripts
+
+        echo "Configuration structure validated"
+
+    ########################################################################
+    # Create Deployment Snapshot
+    ########################################################################
+
+    - name: Prepare DR Snapshot
+      run: |
+
+        mkdir -p dr-snapshots
+
+        echo "Deployment started $(date)" \
+        > dr-snapshots/deployment-info.txt
+
+    ########################################################################
+    # Future Branding Deployment
+    ########################################################################
+
+    - name: Branding Placeholder
+      run: |
+
+        echo "Future Branding Deployment"
+
+    ########################################################################
+    # Future Transform Deployment
+    ########################################################################
+
+    - name: Transform Placeholder
+      run: |
+
+        echo "Deploying to DEV"
+
+    ########################################################################
+    # Future Source Deployment
+    ########################################################################
+
+    - name: Source Placeholder
+      run: |
+
+        echo "Future Source Deployment"
+
+    ########################################################################
+    # Future Workflow Deployment
+    ########################################################################
+
+    - name: Workflow Placeholder
+      run: |
+
+        echo "Future Workflow Deployment"
+
+    ########################################################################
+    # Upload Snapshot
+    ########################################################################
+
+    - name: Upload Deployment Snapshot
+      uses: actions/upload-artifact@v4
+      with:
+        name: deployment-snapshot-${{ github.run_number }}
+        path: dr-snapshots/
+
+    ########################################################################
+    # Deployment Summary
+    ########################################################################
+
+    - name: Deployment Summary
+      run: |
+
+        echo "================================"
+        echo "Environment : $ENV_NAME"
+        echo "Status      : SUCCESS"
+        echo "================================"
