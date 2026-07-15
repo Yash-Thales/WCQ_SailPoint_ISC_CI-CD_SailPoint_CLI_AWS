@@ -8,6 +8,7 @@
   "object": {
     "id": "c3eaa01b-7c0c-4c71-b76f-e1f88c19a701",
     "name": "NoEmail",
+    "description": "Standard transform to handle no email scenarios - Verified by GitOps Pipeline",
     "type": "firstValid",
     "attributes": {
       "values": [
