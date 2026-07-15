@@ -173,7 +173,7 @@
         "id": "e74c726567084ed8b9e9bae007602611",
         "name": "account",
         "created": "2026-07-03T04:28:53.967Z",
-        "modified": "2026-07-15T03:15:38.268Z"
+        "modified": "2026-07-15T03:20:59.159Z"
       },
       {
         "nativeObjectType": "Group",
@@ -287,7 +287,7 @@
         "id": "b541146987be4088baec87789c80d7e8",
         "name": "group",
         "created": "2026-07-03T04:28:53.967Z",
-        "modified": "2026-07-15T03:15:38.361Z"
+        "modified": "2026-07-15T03:20:59.267Z"
       }
     ],
     "connectorAttributes": {
@@ -442,6 +442,12 @@
             "isMultiValued": false
           }
         ]
+      },
+      {
+        "name": "Test",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
       },
       {
         "name": "Test",
