@@ -1,6 +1,7 @@
 {
   "version": 1,
   "self": {
+    "key": "Active Directory2",
     "name": "Active Directory2",
     "type": "SOURCE"
   },
