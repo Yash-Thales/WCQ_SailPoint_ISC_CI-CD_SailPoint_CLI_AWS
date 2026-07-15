@@ -151,7 +151,7 @@
         "id": "08ed739333ab4ae9bc8a9043a6999b8c",
         "name": "account",
         "created": "2026-06-21T23:48:34.776Z",
-        "modified": "2026-07-15T03:15:39.391Z"
+        "modified": "2026-07-15T03:21:00.263Z"
       },
       {
         "nativeObjectType": "Group",
@@ -265,7 +265,7 @@
         "id": "0ab4f8e847a549e8a9e9d7ee9ddce696",
         "name": "group",
         "created": "2026-06-21T23:48:34.776Z",
-        "modified": "2026-07-15T03:15:39.489Z"
+        "modified": "2026-07-15T03:21:00.363Z"
       }
     ],
     "connectorAttributes": {
@@ -409,6 +409,12 @@
             "isMultiValued": false
           }
         ]
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
       },
       {
         "name": "Service Account",
