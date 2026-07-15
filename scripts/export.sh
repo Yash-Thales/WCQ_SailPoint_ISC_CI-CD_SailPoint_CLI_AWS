@@ -14,16 +14,28 @@ if [[ -z "$SAIL_BASE_URL" || -z "$SAIL_CLIENT_ID" || -z "$SAIL_CLIENT_SECRET" ]]
   exit 1
 fi
 
+# Clean trailing slash from base URL
+SAIL_BASE_URL="${SAIL_BASE_URL%/}"
+
 echo "Authenticating with SailPoint ISC..."
-TOKEN_RESPONSE=$(curl -s -f -X POST "${SAIL_BASE_URL}/oauth/token" \
+HTTP_RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${SAIL_BASE_URL}/oauth/token" \
   -d "grant_type=client_credentials" \
   -d "client_id=${SAIL_CLIENT_ID}" \
   -d "client_secret=${SAIL_CLIENT_SECRET}")
 
-ACCESS_TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r '.access_token')
+HTTP_BODY=$(echo "$HTTP_RESPONSE" | sed '$d')
+HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tail -n1)
+
+if [[ "$HTTP_STATUS" -ne 200 ]]; then
+  echo "❌ Error: Authentication failed with HTTP status $HTTP_STATUS"
+  echo "Response: $HTTP_BODY"
+  exit 1
+fi
+
+ACCESS_TOKEN=$(echo "$HTTP_BODY" | jq -r '.access_token')
 
 if [[ -z "$ACCESS_TOKEN" || "$ACCESS_TOKEN" == "null" ]]; then
-  echo "❌ Error: Authentication failed. Please check credentials."
+  echo "❌ Error: Could not extract access token from response."
   exit 1
 fi
 echo "✔ Authentication successful."
