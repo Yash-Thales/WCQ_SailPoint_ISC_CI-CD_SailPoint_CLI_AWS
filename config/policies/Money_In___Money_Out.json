@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "self": {
+    "id": "b29da3d5-0f30-434b-bc51-cdc3b5409176",
+    "name": "Money In & Money Out",
+    "type": "SOD_POLICY"
+  },
+  "object": {
+    "secondaryOwnerRefs": [],
+    "allowedControls": [],
+    "level": "HIGH",
+    "description": "This policy looks across multiple applications for Accounts Receivable and Payable conflicts in accordance with SOX 2.0 compliance controls.",
+    "ownerRef": {
+      "type": "IDENTITY",
+      "id": "4c038ca923cb4f30b461f07c100d2338",
+      "name": "gavin.leung"
+    },
+    "creatorRef": {
+      "type": "IDENTITY",
+      "id": "1ad96756ed3a42d8a98c0e99bbb3e342",
+      "name": "SailPoint Support"
+    },
+    "externalPolicyReference": "https://www.sec.gov/info/smallbus/404guide/intro.shtml",
+    "policyQuery": "@access(id:e6be68967c3e3705b722098dba18937d) AND @access(id:20816ad13faf37b2939f393dcf66c428)",
+    "compensatingControls": "Manager daily review - check for unauthorized supplier creation and review of daily transactions.",
+    "correctionAdvice": "Remove one of the Cash In or Cash Out conflicts or get VP approval.",
+    "tags": [
+      "ACCOUNTING",
+      "VIOLATION_SOD",
+      "SOX"
+    ],
+    "state": "ENFORCED",
+    "scheduled": false,
+    "creatorId": "1ad96756ed3a42d8a98c0e99bbb3e342",
+    "modifierId": null,
+    "violationOwnerAssignmentConfig": {
+      "assignmentRule": "MANAGER",
+      "ownerRef": null
+    },
+    "type": "CONFLICTING_ACCESS_BASED",
+    "conflictingAccessCriteria": {
+      "leftCriteria": {
+        "name": "Money_In",
+        "criteriaList": [
+          {
+            "type": "ENTITLEMENT",
+            "id": "e6be68967c3e3705b722098dba18937d",
+            "name": "AccountsPayable"
+          }
+        ]
+      },
+      "rightCriteria": {
+        "name": "Money_Out",
+        "criteriaList": [
+          {
+            "type": "ENTITLEMENT",
+            "id": "20816ad13faf37b2939f393dcf66c428",
+            "name": "AccountsReceivable"
+          }
+        ]
+      }
+    },
+    "id": "b29da3d5-0f30-434b-bc51-cdc3b5409176",
+    "name": "Money In & Money Out",
+    "created": "2026-01-28T05:11:45Z",
+    "modified": "2026-01-28T05:11:45Z"
+  }
+}

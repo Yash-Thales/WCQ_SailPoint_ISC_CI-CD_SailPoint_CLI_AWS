@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "self": {
+    "id": "877e5740e53b40cf9bc0125b24d7f4ef",
+    "name": "Random Role",
+    "type": "ROLE"
+  },
+  "object": {
+    "id": "877e5740e53b40cf9bc0125b24d7f4ef",
+    "name": "Random Role",
+    "created": "2026-04-07T06:13:58.643285Z",
+    "modified": "2026-04-07T06:16:18.518665Z",
+    "description": "this is just a random role with no purpose",
+    "owner": {
+      "type": "IDENTITY",
+      "id": "40ee9eb8eba949a5b86464ac52023603",
+      "name": "lachlan.benke"
+    },
+    "entitlements": [
+      {
+        "sourceId": "1a7831be-aab8-44c9-a72a-711572dcd5f2",
+        "sourceName": "Active Directory",
+        "id": "021fd61d-28b0-3162-98b8-17bcda573d92",
+        "type": "ENTITLEMENT",
+        "name": "AccountingGeneral"
+      },
+      {
+        "sourceId": "1a7831be-aab8-44c9-a72a-711572dcd5f2",
+        "sourceName": "Active Directory",
+        "id": "03088f1f-1166-3e47-a45b-c902f44a35a1",
+        "type": "ENTITLEMENT",
+        "name": "ReceiveAnalysis"
+      },
+      {
+        "sourceId": "1a7831be-aab8-44c9-a72a-711572dcd5f2",
+        "sourceName": "Active Directory",
+        "id": "0333a2ff-ec79-3633-8808-c3c89d89400a",
+        "type": "ENTITLEMENT",
+        "name": "QualityAssurance"
+      }
+    ],
+    "accessProfiles": [],
+    "membership": {
+      "type": "IDENTITY_LIST",
+      "criteria": null,
+      "identities": [
+        {
+          "type": "IDENTITY",
+          "id": "ea64d30f1adb4219982a89019fd9596f",
+          "name": "1001",
+          "aliasName": "1001"
+        },
+        {
+          "type": "IDENTITY",
+          "id": "22ac10ec994e473bb8392b9a54fd3c4d",
+          "name": "1002",
+          "aliasName": "1002"
+        }
+      ]
+    },
+    "legacyMembershipInfo": null,
+    "enabled": true,
+    "requestable": false,
+    "accessRequestConfig": {
+      "commentsRequired": null,
+      "denialCommentsRequired": null,
+      "approvalSchemes": [],
+      "reauthorizationRequired": false,
+      "requireEndDate": false,
+      "maxPermittedAccessDuration": null,
+      "formDefinitionId": null
+    },
+    "revocationRequestConfig": {
+      "approvalSchemes": []
+    },
+    "segments": [],
+    "dimensional": false,
+    "dimensionRefs": null,
+    "accessModelMetadata": {
+      "attributes": []
+    },
+    "additionalOwners": [
+      {
+        "type": "IDENTITY",
+        "id": "ea64d30f1adb4219982a89019fd9596f",
+        "name": "1001"
+      }
+    ],
+    "privilegeLevel": null,
+    "segmentRefs": [],
+    "dimensions": []
+  }
+}

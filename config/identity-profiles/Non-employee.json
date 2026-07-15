@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "self": {
+    "id": "ad5be29a437f4da59d8a38712e5770fa",
+    "name": "Non-employee",
+    "type": "IDENTITY_PROFILE"
+  },
+  "object": {
+    "description": "For all external Identities",
+    "owner": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "priority": 30,
+    "authoritativeSource": {
+      "type": "SOURCE",
+      "id": "0624562cda784144882030e4b474b9ba",
+      "name": "Non-Employee"
+    },
+    "identityRefreshRequired": false,
+    "identityCount": 2,
+    "identityAttributeConfig": {
+      "enabled": true,
+      "attributeTransforms": [
+        {
+          "identityAttributeName": "uid",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "accountName",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "email",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "email",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "lastname",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "lastName",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "firstname",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "firstName",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "displayName",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "accountName",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "endDate",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "endDate",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "startDate",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Non-Employee",
+              "attributeName": "startDate",
+              "sourceId": "0624562cda784144882030e4b474b9ba"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "types",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Microsoft Entra ID",
+              "attributeName": "userType",
+              "sourceId": "b665875ef4c74f06a564e614fbd4dd1c"
+            }
+          }
+        }
+      ]
+    },
+    "identityExceptionReportReference": null,
+    "hasTimeBasedAttr": false,
+    "id": "ad5be29a437f4da59d8a38712e5770fa",
+    "name": "Non-employee",
+    "created": "2026-03-04T01:06:36.697Z",
+    "modified": "2026-03-11T05:06:42.926Z"
+  }
+}

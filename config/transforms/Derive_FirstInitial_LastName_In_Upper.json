@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "self": {
+    "id": "500c1822-2072-4e10-88a2-cb60ac503113",
+    "name": "Derive FirstInitial+LastName In Upper",
+    "type": "TRANSFORM"
+  },
+  "object": {
+    "id": "500c1822-2072-4e10-88a2-cb60ac503113",
+    "name": "Derive FirstInitial+LastName In Upper",
+    "type": "upper",
+    "attributes": {
+      "input": {
+        "attributes": {
+          "values": [
+            {
+              "attributes": {
+                "begin": 0,
+                "end": 1,
+                "input": {
+                  "attributes": {
+                    "name": "firstname"
+                  },
+                  "type": "identityAttribute"
+                }
+              },
+              "type": "substring"
+            },
+            {
+              "attributes": {
+                "name": "lastname"
+              },
+              "type": "identityAttribute"
+            }
+          ]
+        },
+        "type": "concat"
+      }
+    },
+    "internal": false
+  }
+}

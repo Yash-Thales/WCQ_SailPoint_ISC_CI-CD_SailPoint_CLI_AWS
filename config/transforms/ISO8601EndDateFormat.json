@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "self": {
+    "id": "8ad0c7d5-976e-4e26-a915-1df0e10cff40",
+    "name": "ISO8601EndDateFormat",
+    "type": "TRANSFORM"
+  },
+  "object": {
+    "id": "8ad0c7d5-976e-4e26-a915-1df0e10cff40",
+    "name": "ISO8601EndDateFormat",
+    "type": "firstValid",
+    "attributes": {
+      "values": [
+        {
+          "attributes": {
+            "attributeName": "endDate",
+            "inputFormat": "MM/dd/yyyy",
+            "outputFormat": "ISO8601",
+            "sourceName": "Employee"
+          },
+          "type": "dateFormat"
+        },
+        {
+          "attributes": {
+            "value": "2199-01-01T00:00:00.000Z"
+          },
+          "type": "static"
+        }
+      ]
+    },
+    "internal": false
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "self": {
+    "id": "33340949a965415898ecc7cd18a2f1f5",
+    "name": "Faisal - PingOne",
+    "type": "ACCESS_PROFILE"
+  },
+  "object": {
+    "id": "33340949a965415898ecc7cd18a2f1f5",
+    "name": "Faisal - PingOne",
+    "description": "This is PingOne Access Profile",
+    "created": "2026-06-26T05:30:21.760378Z",
+    "modified": "2026-07-06T06:24:04.30165Z",
+    "enabled": true,
+    "owner": {
+      "type": "IDENTITY",
+      "id": "5416c032c7884ffa818687ccbfe92fc3",
+      "name": "faisal.mustafa"
+    },
+    "source": {
+      "id": "4883888b6fc74586a7f6447ab9e94672",
+      "type": "SOURCE",
+      "name": "Faisal - PingOne"
+    },
+    "entitlements": [
+      {
+        "id": "4ccbae105fc135889fdab5b86c6398cb",
+        "type": "ENTITLEMENT",
+        "name": "Administrators"
+      },
+      {
+        "id": "959b46a79a0e3e029769bc1299932b32",
+        "type": "ENTITLEMENT",
+        "name": "App-PingOne-Users|IDP|5a4dd80b-202a-4192-8a04-e62427e3d211"
+      }
+    ],
+    "requestable": true,
+    "accessRequestConfig": {
+      "commentsRequired": true,
+      "denialCommentsRequired": false,
+      "approvalSchemes": [
+        {
+          "approverType": "SOURCE_OWNER",
+          "approverId": null
+        }
+      ],
+      "reauthorizationRequired": false,
+      "requireEndDate": false,
+      "maxPermittedAccessDuration": null,
+      "formDefinitionId": null
+    },
+    "revocationRequestConfig": {
+      "approvalSchemes": []
+    },
+    "segments": [],
+    "provisioningCriteria": null,
+    "additionalOwners": [],
+    "privilegeLevel": null,
+    "segmentRefs": []
+  }
+}

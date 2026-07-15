@@ -1,0 +1,443 @@
+{
+  "version": 1,
+  "self": {
+    "id": "a6e3426208b1401f914af87e386ed5f9",
+    "name": "Faisal Source NHI2",
+    "type": "SOURCE"
+  },
+  "object": {
+    "id": "a6e3426208b1401f914af87e386ed5f9",
+    "name": "Faisal Source NHI2",
+    "type": "DelimitedFile",
+    "connectorClass": "sailpoint.connector.delimitedfile.DelimitedFileConnector",
+    "connectorScriptName": "delimited-file-angularsc",
+    "description": "This is test source",
+    "deleteThreshold": 10,
+    "provisionAsCsv": true,
+    "owner": {
+      "type": "IDENTITY",
+      "id": "5416c032c7884ffa818687ccbfe92fc3",
+      "name": "faisal.mustafa"
+    },
+    "accountCorrelationRule": null,
+    "managerCorrelationRule": null,
+    "beforeProvisioningRule": null,
+    "features": [
+      "DIRECT_PERMISSIONS",
+      "DISCOVER_SCHEMA",
+      "NO_RANDOM_ACCESS"
+    ],
+    "schemas": [
+      {
+        "nativeObjectType": "User",
+        "identityAttribute": "FirstName",
+        "displayAttribute": "LastName",
+        "hierarchyAttribute": null,
+        "includePermissions": false,
+        "features": [],
+        "configuration": {},
+        "attributes": [
+          {
+            "name": "ServiceAccountID",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Account Name",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "EmployeeID",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "ID",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "FirstName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "LastName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "Email",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "Department",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "JobTitle",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "Status",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "Location",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "StartDate",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "MemberOf",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": null,
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          }
+        ],
+        "id": "e1af1946ffc544a59e1b3ad9b31a09e5",
+        "name": "account",
+        "created": "2026-06-24T03:08:43.072Z",
+        "modified": "2026-06-24T04:50:14.117Z"
+      },
+      {
+        "nativeObjectType": "Group",
+        "identityAttribute": "id",
+        "displayAttribute": "displayName",
+        "hierarchyAttribute": null,
+        "includePermissions": false,
+        "features": [],
+        "configuration": {},
+        "attributes": [
+          {
+            "name": "id",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Unique ID for Group",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "name",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "The name of the account - typically groupname etc.",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "displayName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "The preferred display name for the account",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "created",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Date/Time when the group was created (utime)",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "description",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Multi-purpose field used to capture a description or comments",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "modified",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Date/Time when the group was modified (utime)",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "entitlements",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "The access rights, entitlements etc. that the account has access to.",
+            "isMulti": true,
+            "isEntitlement": true,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "groups",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "The groups, roles etc. that reference to account group objects",
+            "isMulti": true,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "permissions",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "The permissions associated with the account",
+            "isMulti": true,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          }
+        ],
+        "id": "dfe229563fb5486d846a9e1e25112f20",
+        "name": "group",
+        "created": "2026-06-24T03:08:43.072Z",
+        "modified": "2026-06-24T03:08:43.072Z"
+      }
+    ],
+    "connectorAttributes": {
+      "group.mergeRows": true,
+      "group.delimiter": ",",
+      "mergeRows": false,
+      "group.filetransport": "local",
+      "partitionMode": "disabled",
+      "checkDeletedDisabled": true,
+      "connectionType": "file",
+      "group.host": "local",
+      "group.indexColumn": "id",
+      "recommendationStatus": "TERMINATED",
+      "delimiter": ",",
+      "host": "local",
+      "commentCharacter": "#",
+      "group.mergeColumns": [
+        "entitlements",
+        "groups",
+        "permissions"
+      ],
+      "hasHeader": true,
+      "filterEmptyRecords": true,
+      "filetransport": "local",
+      "deleteThresholdPercentage": 10,
+      "group.filterEmptyRecords": true,
+      "group.hasHeader": true,
+      "group.partitionMode": "disabled",
+      "labels": [
+        "standard"
+      ],
+      "parseType": "delimited",
+      "group.columnNames": [
+        "id",
+        "name",
+        "displayName",
+        "created",
+        "description",
+        "modified",
+        "entitlements",
+        "groups",
+        "permissions"
+      ],
+      "templateApplication": "DelimitedFile Template",
+      "encrypted": "transportUserPassword,pgpPrivateKey,pgpPrivateKeyPassword,s3SecretKey,scpPrivateKey,PassphraseForPrivateKey,ftpsClientCertificatePassphrase",
+      "indexColumn": "FirstName",
+      "healthy": true,
+      "cloudDisplayName": "Faisal Source NHI2",
+      "connectorName": "Delimited File",
+      "cloudOriginalApplicationType": "Delimited File",
+      "since": "2026-06-24T03:14:09.812Z",
+      "status": "SOURCE_STATE_HEALTHY"
+    },
+    "crossTenantConnectorAttributes": {},
+    "correlationConfigDetails": {
+      "attributeAssignments": [
+        {
+          "complex": false,
+          "property": "identificationNumber",
+          "operation": "EQ",
+          "value": "EmployeeID",
+          "ignoreCase": false,
+          "matchMode": null,
+          "filterString": null,
+          "sequence": 1
+        },
+        {
+          "complex": false,
+          "property": "identificationNumber",
+          "operation": "EQ",
+          "value": "ServiceAccountID",
+          "ignoreCase": false,
+          "matchMode": null,
+          "filterString": null,
+          "sequence": 2
+        }
+      ],
+      "id": "b34306ecec404eaaaa354feb7a5b1f33",
+      "name": "a6e3426208b1401f914af87e386ed5f9 Account Correlation Config"
+    },
+    "managerCorrelationMapping": null,
+    "provisioningPolicies": [
+      {
+        "name": "Create Policy",
+        "description": "Create Policy",
+        "usageType": "CREATE",
+        "fields": [
+          {
+            "name": "id",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "name",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "givenName",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "familyName",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "e-mail",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "location",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "manager",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          },
+          {
+            "name": "groups",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": null,
+            "isMultiValued": false
+          }
+        ]
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      }
+    ],
+    "managementWorkgroup": null,
+    "passwordPolicies": null
+  }
+}

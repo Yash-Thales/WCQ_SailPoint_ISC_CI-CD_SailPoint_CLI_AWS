@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "self": {
+    "id": "1da4bfe6-6c03-4e31-92dc-909bae15267a",
+    "name": "Invoice Creation and Approval Control",
+    "type": "SOD_POLICY"
+  },
+  "object": {
+    "secondaryOwnerRefs": [],
+    "allowedControls": [],
+    "level": "HIGH",
+    "description": "Policy to enforce that an Invoice Creator does not also have the ability to pay invoices",
+    "ownerRef": {
+      "type": "IDENTITY",
+      "id": "4c038ca923cb4f30b461f07c100d2338",
+      "name": "gavin.leung"
+    },
+    "creatorRef": {
+      "type": "IDENTITY",
+      "id": "1ad96756ed3a42d8a98c0e99bbb3e342",
+      "name": "SailPoint Support"
+    },
+    "externalPolicyReference": " http://acme.policies/sod",
+    "policyQuery": "@access(id:8a3d54cf1dbe3561872a1da3bbffba1d) AND @access(id:4ec0ff0b39953850b9193e3cc6defd23)",
+    "compensatingControls": "No employee will have sole authority of or responsibility for control to create and approve invoices.\n\n An employee cannot serve as both the creator and approver for the same invoice review under a contract or order.",
+    "correctionAdvice": "Deny or remove access upon discovery of conflicting access unless VP approved or time limited access not to exceed 24 hours",
+    "tags": [
+      "VIOLATION_SOD",
+      "SOD",
+      "SOX"
+    ],
+    "state": "ENFORCED",
+    "scheduled": false,
+    "creatorId": "1ad96756ed3a42d8a98c0e99bbb3e342",
+    "modifierId": null,
+    "violationOwnerAssignmentConfig": {
+      "assignmentRule": null,
+      "ownerRef": null
+    },
+    "type": "CONFLICTING_ACCESS_BASED",
+    "conflictingAccessCriteria": {
+      "leftCriteria": {
+        "name": "Invoice Create",
+        "criteriaList": [
+          {
+            "type": "ENTITLEMENT",
+            "id": "8a3d54cf1dbe3561872a1da3bbffba1d",
+            "name": "CreateInvoices"
+          }
+        ]
+      },
+      "rightCriteria": {
+        "name": "Invoice Approve",
+        "criteriaList": [
+          {
+            "type": "ENTITLEMENT",
+            "id": "4ec0ff0b39953850b9193e3cc6defd23",
+            "name": "ProcessInvoices"
+          }
+        ]
+      }
+    },
+    "id": "1da4bfe6-6c03-4e31-92dc-909bae15267a",
+    "name": "Invoice Creation and Approval Control",
+    "created": "2026-01-28T05:11:40Z",
+    "modified": "2026-01-28T05:11:40Z"
+  }
+}

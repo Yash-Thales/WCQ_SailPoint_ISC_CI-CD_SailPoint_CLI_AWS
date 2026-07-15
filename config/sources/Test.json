@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "self": {
+    "id": "3504aec2de7e4deb9f091a02e812c8a8",
+    "name": "Test",
+    "type": "SOURCE"
+  },
+  "object": {
+    "id": "3504aec2de7e4deb9f091a02e812c8a8",
+    "name": "Test",
+    "type": "e9d07c15-bdaf-4619-8f26-5afd8086d03e",
+    "connectorClass": "",
+    "connectorScriptName": "adi-entra",
+    "description": "Yash",
+    "deleteThreshold": 10,
+    "provisionAsCsv": false,
+    "owner": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "accountCorrelationRule": null,
+    "managerCorrelationRule": null,
+    "beforeProvisioningRule": null,
+    "features": [],
+    "schemas": [
+      {
+        "nativeObjectType": "User",
+        "identityAttribute": "userId",
+        "displayAttribute": "username",
+        "hierarchyAttribute": null,
+        "includePermissions": false,
+        "features": [],
+        "configuration": {},
+        "attributes": [
+          {
+            "name": "email",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Email of the account",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "name",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Name of the account",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "username",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "UserName of the account",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "userId",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "userID of the account",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          }
+        ],
+        "id": "2fa76dc2968f4ab1bf4f634c429128b7",
+        "name": "account",
+        "created": "2026-07-02T06:07:23.572Z",
+        "modified": "2026-07-02T06:07:23.572Z"
+      }
+    ],
+    "connectorAttributes": {
+      "healthCheckTimeout": 120,
+      "idnProxyType": "sp-connect",
+      "spConnectorSpecId": "e9d07c15-bdaf-4619-8f26-5afd8086d03e",
+      "deleteThresholdPercentage": 10,
+      "connectionType": "direct",
+      "spConnectorInstanceId": "526b34bd-8cdd-42e9-a099-4b7a2ac8837a",
+      "cloudCacheUpdate": 1782985753748,
+      "templateApplication": "Activity Insights - Microsoft Entra ID",
+      "healthy": true,
+      "cloudDisplayName": "Test",
+      "connectorName": "Activity Insights - Microsoft Entra ID",
+      "since": "2026-07-02T09:49:13.735Z",
+      "status": "SOURCE_STATE_HEALTHY"
+    },
+    "crossTenantConnectorAttributes": {},
+    "correlationConfigDetails": {
+      "attributeAssignments": null,
+      "id": null,
+      "name": null
+    },
+    "managerCorrelationMapping": null,
+    "provisioningPolicies": [],
+    "managementWorkgroup": null,
+    "passwordPolicies": null
+  }
+}

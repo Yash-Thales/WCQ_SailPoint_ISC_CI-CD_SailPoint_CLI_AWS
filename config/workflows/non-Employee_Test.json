@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "self": {
+    "id": "d0979a1f-889d-4d40-b8d3-bdf05acc9522",
+    "name": "non-Employee Test",
+    "type": "WORKFLOW"
+  },
+  "object": {
+    "id": "d0979a1f-889d-4d40-b8d3-bdf05acc9522",
+    "name": "non-Employee Test",
+    "description": "This is just the test workflow for non-Employee Source",
+    "created": "2026-03-10T01:11:17.58198171Z",
+    "modified": "2026-03-10T01:39:55.038207264Z",
+    "modifiedBy": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "definition": {
+      "steps": {}
+    },
+    "enabled": false,
+    "creator": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "owner": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "trigger": {
+      "type": "EVENT",
+      "attributes": {
+        "attributeToFilter": "types",
+        "filter.$": "$.changes[?(@.attribute == \"types\")]",
+        "id": "idn:identity-attributes-changed",
+        "integrationId": null
+      }
+    }
+  }
+}

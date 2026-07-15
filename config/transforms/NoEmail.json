@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "self": {
+    "id": "c3eaa01b-7c0c-4c71-b76f-e1f88c19a701",
+    "name": "NoEmail",
+    "type": "TRANSFORM"
+  },
+  "object": {
+    "id": "c3eaa01b-7c0c-4c71-b76f-e1f88c19a701",
+    "name": "NoEmail",
+    "type": "firstValid",
+    "attributes": {
+      "values": [
+        {
+          "attributes": {
+            "attributeName": "EMAIL_ADDRESS_WORK",
+            "sourceName": "Workday"
+          },
+          "type": "accountAttribute"
+        },
+        {
+          "attributes": {
+            "value": "(none)"
+          },
+          "type": "static"
+        }
+      ]
+    },
+    "internal": false
+  }
+}

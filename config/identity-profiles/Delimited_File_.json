@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "self": {
+    "id": "c8475d5f023f427d89a7a8ba424ca0a1",
+    "name": "Delimited File ",
+    "type": "IDENTITY_PROFILE"
+  },
+  "object": {
+    "description": "Identity Profile for the Delimited file",
+    "owner": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "priority": 50,
+    "authoritativeSource": {
+      "type": "SOURCE",
+      "id": "6b618f5af8f24383b041032827ca5ea8",
+      "name": "Delimated File - Test"
+    },
+    "identityRefreshRequired": true,
+    "identityCount": 5,
+    "identityAttributeConfig": {
+      "enabled": true,
+      "attributeTransforms": [
+        {
+          "identityAttributeName": "uid",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Delimated File - Test",
+              "attributeName": "EmployeeID",
+              "sourceId": "6b618f5af8f24383b041032827ca5ea8"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "email",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Delimated File - Test",
+              "attributeName": "Email",
+              "sourceId": "6b618f5af8f24383b041032827ca5ea8"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "lastname",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Delimated File - Test",
+              "attributeName": "LastName",
+              "sourceId": "6b618f5af8f24383b041032827ca5ea8"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "firstname",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Delimated File - Test",
+              "attributeName": "FirstName",
+              "sourceId": "6b618f5af8f24383b041032827ca5ea8"
+            }
+          }
+        },
+        {
+          "identityAttributeName": "displayName",
+          "transformDefinition": {
+            "type": "accountAttribute",
+            "attributes": {
+              "sourceName": "Delimated File - Test",
+              "attributeName": "EmployeeID",
+              "sourceId": "6b618f5af8f24383b041032827ca5ea8"
+            }
+          }
+        }
+      ]
+    },
+    "identityExceptionReportReference": null,
+    "hasTimeBasedAttr": false,
+    "id": "c8475d5f023f427d89a7a8ba424ca0a1",
+    "name": "Delimited File ",
+    "created": "2026-03-18T01:21:12.985Z",
+    "modified": "2026-06-15T23:37:45.598Z"
+  }
+}

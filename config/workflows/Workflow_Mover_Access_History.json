@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "self": {
+    "id": "f0e39977-74cf-4cb2-9a50-b2ee0109706c",
+    "name": "Workflow Mover Access History",
+    "type": "WORKFLOW"
+  },
+  "object": {
+    "id": "f0e39977-74cf-4cb2-9a50-b2ee0109706c",
+    "name": "Workflow Mover Access History",
+    "description": "Workflow when an identity moves within an organization to another team, changing managers, etc.\n\nSend access history to new manager.",
+    "created": "2026-01-28T05:07:26.222023774Z",
+    "modified": "2026-01-28T05:07:26.222023774Z",
+    "modifiedBy": {
+      "type": "IDENTITY",
+      "id": "1ad96756ed3a42d8a98c0e99bbb3e342",
+      "name": "slpt.support"
+    },
+    "definition": {
+      "start": "IsJobTitleChange",
+      "steps": {
+        "Get Identity History": {
+          "actionId": "sp:get-identity-history",
+          "attributes": {
+            "eventTypes": null,
+            "from.$": null,
+            "id.$": "$.trigger.identity.id"
+          },
+          "description": null,
+          "nextStep": "Send Email",
+          "type": "action"
+        },
+        "IsJobTitleChange": {
+          "choiceList": [
+            {
+              "comparator": "StringEquals",
+              "nextStep": "Get Identity History",
+              "variableA.$": "$.changes[?(@.attribute=='jobTitle')].attribute",
+              "variableB": "jobTitle"
+            }
+          ],
+          "defaultStep": "success",
+          "type": "choice"
+        },
+        "Send Email": {
+          "actionId": "sp:send-email",
+          "attributes": {
+            "body": null,
+            "recipientId.$": null
+          },
+          "type": "action"
+        },
+        "success": {
+          "type": "success"
+        }
+      }
+    },
+    "enabled": false,
+    "creator": {
+      "type": "IDENTITY",
+      "id": "1ad96756ed3a42d8a98c0e99bbb3e342",
+      "name": "slpt.support"
+    },
+    "owner": {
+      "type": "IDENTITY",
+      "id": "4c038ca923cb4f30b461f07c100d2338",
+      "name": "gavin.leung"
+    },
+    "trigger": {
+      "type": "EVENT",
+      "attributes": {
+        "id": "idn:identity-attributes-changed",
+        "integrationId": null
+      }
+    }
+  }
+}

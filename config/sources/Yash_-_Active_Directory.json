@@ -1,0 +1,429 @@
+{
+  "version": 1,
+  "self": {
+    "id": "e3a685f479734c5b9e7644b6f0617cfb",
+    "name": "Yash - Active Directory",
+    "type": "SOURCE"
+  },
+  "object": {
+    "id": "e3a685f479734c5b9e7644b6f0617cfb",
+    "name": "Yash - Active Directory",
+    "type": "Active Directory - Direct",
+    "connectorClass": "sailpoint.connector.ADLDAPConnector",
+    "connectorScriptName": "active-directory-angularsc",
+    "description": "Onboarded Via OnboardIdentity",
+    "deleteThreshold": 10,
+    "provisionAsCsv": false,
+    "owner": {
+      "type": "IDENTITY",
+      "id": "3ca3a84641db4c168372dc2742c46343",
+      "name": "yash.mehta"
+    },
+    "accountCorrelationRule": null,
+    "managerCorrelationRule": {
+      "type": "RULE",
+      "id": "8c5172ec35154c81910126c10ae0d125",
+      "name": "Cloud Correlate Manager by AccountId"
+    },
+    "beforeProvisioningRule": null,
+    "features": [
+      "AUTHENTICATE",
+      "MANAGER_LOOKUP",
+      "SEARCH",
+      "UNLOCK",
+      "UNSTRUCTURED_TARGETS",
+      "PREFER_UUID",
+      "CURRENT_PASSWORD",
+      "GROUPS_HAVE_MEMBERS",
+      "NO_PERMISSIONS_PROVISIONING",
+      "NO_GROUP_PERMISSIONS_PROVISIONING"
+    ],
+    "schemas": [
+      {
+        "nativeObjectType": "account",
+        "identityAttribute": "distinguishedName",
+        "displayAttribute": "sAMAccountName",
+        "hierarchyAttribute": null,
+        "includePermissions": false,
+        "features": [],
+        "configuration": {},
+        "attributes": [
+          {
+            "name": "sAMAccountName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Active Directory Username",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "distinguishedName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Full LDAP Distinguished Name",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "givenName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "First Name",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "sn",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Last Name/Surname",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "userPrincipalName",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "UPN for Login",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "mail",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Corporate Email",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "userAccountControl",
+            "nativeName": null,
+            "type": "INT",
+            "schema": null,
+            "description": "AD Account Status Flag",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "memberOf",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Assigned Active Directory Groups",
+            "isMulti": true,
+            "isEntitlement": true,
+            "isGroup": false,
+            "isManaged": false
+          }
+        ],
+        "id": "faef3cc8208341169e289275b33369df",
+        "name": "account",
+        "created": "2026-06-30T09:26:36.691Z",
+        "modified": "2026-06-30T10:11:06.556Z"
+      },
+      {
+        "nativeObjectType": "group",
+        "identityAttribute": "id",
+        "displayAttribute": "name",
+        "hierarchyAttribute": null,
+        "includePermissions": false,
+        "features": [
+          "NO_PERMISSIONS_PROVISIONING",
+          "GROUPS_HAVE_MEMBERS"
+        ],
+        "configuration": {},
+        "attributes": [
+          {
+            "name": "id",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Entitlement Identity Attribute",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "name",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Entitlement Display Attribute",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          },
+          {
+            "name": "description",
+            "nativeName": null,
+            "type": "STRING",
+            "schema": null,
+            "description": "Entitlement Description",
+            "isMulti": false,
+            "isEntitlement": false,
+            "isGroup": false,
+            "isManaged": false
+          }
+        ],
+        "id": "846eedd55f38484898aa795829b7aae2",
+        "name": "group",
+        "created": "2026-06-30T09:26:37.183Z",
+        "modified": "2026-06-30T16:34:57.665Z"
+      }
+    ],
+    "connectorAttributes": {
+      "healthCheckTimeout": 30,
+      "forestSettings": [
+        {
+          "isResourceForest": false,
+          "forestName": "test.com.au",
+          "authorizationType": "simple",
+          "enablePasswordLessAuthenticationForForest": false,
+          "user": "Administrator@test.com.au",
+          "useSSL": false
+        }
+      ],
+      "deltaAggregationEnabled": false,
+      "connectionType": "direct",
+      "adPageSize": 1000,
+      "iqServicePort": "5050",
+      "useTLSForIQService": false,
+      "enableProvisioningFeature": false,
+      "ADAppVersion": "V2",
+      "group.searchDNs": [
+        {
+          "searchDN": "DC=test,DC=com,DC=au",
+          "searchScope": "SUBTREE",
+          "iterateSearchFilter": "(objectClass=Group)"
+        }
+      ],
+      "domainSettings": [
+        {
+          "servers": [
+            "192.168.4.48"
+          ],
+          "port": "389",
+          "forestName": "test.com.au",
+          "authorizationType": "simple",
+          "user": "Administrator@test.com.au",
+          "enablePasswordLessAuthenticationForDomain": false,
+          "domainDN": "DC=test,DC=com,DC=au",
+          "useSSL": false
+        }
+      ],
+      "searchScope": "SUBTREE",
+      "deleteThresholdPercentage": 10,
+      "group.searchScope": "SUBTREE",
+      "serviceAccount": "Administrator@test.com.au",
+      "aggregationScheduleTimezone": "America/New_York",
+      "cloudCacheUpdate": 1784051395721,
+      "healthy": false,
+      "forestAdminPassword": "Yash1234!",
+      "cloudDisplayName": "Yash - Active Directory",
+      "connectorName": "Active Directory",
+      "adSearchTimeout": 120,
+      "fullAggregationSchedule": "Daily at 02:00",
+      "searchDNs": [
+        {
+          "groupMembershipSearchDN": "DC=test,DC=com,DC=au",
+          "searchDN": "CN=Users,DC=test,DC=com,DC=au",
+          "iterateSearchFilter": "(&(objectClass=user)(objectCategory=person))"
+        }
+      ],
+      "since": "2026-07-08T01:49:50.897Z",
+      "status": "SOURCE_STATE_FAILURE_CLUSTER"
+    },
+    "crossTenantConnectorAttributes": {},
+    "correlationConfigDetails": {
+      "attributeAssignments": [
+        {
+          "complex": false,
+          "property": "identityId",
+          "operation": "EQ",
+          "value": "",
+          "ignoreCase": true,
+          "matchMode": null,
+          "filterString": null,
+          "sequence": 1
+        }
+      ],
+      "id": "9f04571c31224da9b8d658097dd479c0",
+      "name": "e3a685f479734c5b9e7644b6f0617cfb Account Correlation Config"
+    },
+    "managerCorrelationMapping": null,
+    "provisioningPolicies": [
+      {
+        "name": "Account Creation Policy",
+        "description": "Default create provisioning policy for source: App_Active Directory",
+        "usageType": "CREATE",
+        "fields": [
+          {
+            "name": "sAMAccountName",
+            "transform": {
+              "type": "identityAttribute",
+              "attributes": {
+                "name": "identityId"
+              }
+            },
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "givenName",
+            "transform": {
+              "type": "identityAttribute",
+              "attributes": {
+                "name": "firstName"
+              }
+            },
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "sn",
+            "transform": {
+              "type": "identityAttribute",
+              "attributes": {
+                "name": "lastName"
+              }
+            },
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "userPrincipalName",
+            "transform": {
+              "type": "identityAttribute",
+              "attributes": {
+                "name": "email"
+              }
+            },
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "mail",
+            "transform": {
+              "type": "identityAttribute",
+              "attributes": {
+                "name": "email"
+              }
+            },
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "userAccountControl",
+            "transform": {
+              "type": "identityAttribute",
+              "attributes": {
+                "name": "status"
+              }
+            },
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          }
+        ]
+      },
+      {
+        "name": "Create Group",
+        "description": null,
+        "usageType": "CREATE_GROUP",
+        "fields": [
+          {
+            "name": "distinguishedName",
+            "transform": null,
+            "attributes": {},
+            "isRequired": true,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "sAMAccountName",
+            "transform": null,
+            "attributes": {},
+            "isRequired": true,
+            "type": "string",
+            "isMultiValued": false
+          }
+        ]
+      },
+      {
+        "name": "Update Group",
+        "description": null,
+        "usageType": "UPDATE_GROUP",
+        "fields": [
+          {
+            "name": "GroupType",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "GroupScope",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "description",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          },
+          {
+            "name": "mailNickname",
+            "transform": null,
+            "attributes": {},
+            "isRequired": false,
+            "type": "string",
+            "isMultiValued": false
+          }
+        ]
+      }
+    ],
+    "managementWorkgroup": null,
+    "passwordPolicies": null
+  }
+}

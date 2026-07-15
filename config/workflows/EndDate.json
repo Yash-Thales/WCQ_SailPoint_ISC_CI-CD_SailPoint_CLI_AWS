@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "self": {
+    "id": "9d49943e-879d-4f06-b30a-56d7e0fedd69",
+    "name": "EndDate",
+    "type": "WORKFLOW"
+  },
+  "object": {
+    "id": "9d49943e-879d-4f06-b30a-56d7e0fedd69",
+    "name": "EndDate",
+    "description": "Dormate account EndDates",
+    "created": "2026-06-29T02:21:31.257137157Z",
+    "modified": "2026-06-29T02:21:31.257137157Z",
+    "modifiedBy": {
+      "type": "IDENTITY",
+      "id": "5416c032c7884ffa818687ccbfe92fc3",
+      "name": "faisal.mustafa"
+    },
+    "definition": {
+      "steps": {}
+    },
+    "enabled": false,
+    "creator": {
+      "type": "IDENTITY",
+      "id": "5416c032c7884ffa818687ccbfe92fc3",
+      "name": "faisal.mustafa"
+    },
+    "owner": {
+      "type": "IDENTITY",
+      "id": "5416c032c7884ffa818687ccbfe92fc3",
+      "name": "faisal.mustafa"
+    },
+    "trigger": {
+      "type": "",
+      "attributes": {
+        "integrationId": null
+      }
+    }
+  }
+}

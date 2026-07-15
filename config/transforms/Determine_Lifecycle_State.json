@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "self": {
+    "id": "30d44b90-be13-44f6-b44a-a4d34b6b9813",
+    "name": "Determine Lifecycle State",
+    "type": "TRANSFORM"
+  },
+  "object": {
+    "id": "30d44b90-be13-44f6-b44a-a4d34b6b9813",
+    "name": "Determine Lifecycle State",
+    "type": "dateCompare",
+    "attributes": {
+      "requiresPeriodicRefresh": "true",
+      "firstDate": {
+        "attributes": {
+          "name": "startDate"
+        },
+        "type": "identityAttribute"
+      },
+      "negativeCondition": {
+        "attributes": {
+          "firstDate": {
+            "attributes": {
+              "name": "endDate"
+            },
+            "type": "identityAttribute"
+          },
+          "negativeCondition": "inactive",
+          "operator": "gt",
+          "positiveCondition": "active",
+          "secondDate": "now"
+        },
+        "type": "dateCompare"
+      },
+      "operator": "gt",
+      "positiveCondition": "prehire",
+      "secondDate": "now"
+    },
+    "internal": false
+  }
+}
