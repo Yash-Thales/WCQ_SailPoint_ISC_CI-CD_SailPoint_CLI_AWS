@@ -76,13 +76,16 @@ while IFS= read -r -d '' JSON_FILE; do
     continue
   fi
 
-  # Check for hardcoded tenant URLs or Client Secrets (security best practice)
+  # Check for hardcoded tenant URLs
   if grep -E -q "identitynow\.com|sailpoint\.com" "$JSON_FILE"; then
     echo "⚠️ Warning: Found hardcoded tenant/SailPoint URL in '$JSON_FILE'. Recommend tokenization using variables."
   fi
 
-  if grep -E -iq "client_secret|clientsecret|password|clientSecret" "$JSON_FILE"; then
-    echo "❌ Error: Potential hardcoded secret/password detected in '$JSON_FILE'."
+  # Check if there are keys containing secret/password/token whose values are non-null and do not start with $ or { (which indicates variable tokenization)
+  HAS_SECRET=$(jq '[paths(scalars) as $p | select($p[-1] | tostring | test("password|secret|token|key"; "i")) | getpath($p)] | map(select(. != null and . != "" and (tostring | test("^(\\$|\\{\\{)") | not))) | length' "$JSON_FILE" 2>/dev/null || echo 0)
+
+  if [[ "$HAS_SECRET" -gt 0 ]]; then
+    echo "❌ Error: Potential plaintext hardcoded secret/password detected in '$JSON_FILE'."
     FAILED=1
   fi
 
