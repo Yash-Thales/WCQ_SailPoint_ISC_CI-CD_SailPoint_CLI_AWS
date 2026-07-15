@@ -16,13 +16,10 @@ on:
       - uat
 
 jobs:
-
   validate:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -31,84 +28,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      - name: Debug Repository Structure
+      - name: Run Validation Script
         run: |
-          pwd
-          find . -maxdepth 3 -type d | sort
-          find . -maxdepth 3 -type f | sort
-
-      - name: Validate Folder Structure
-        run: |
-
-          REQUIRED_DIRS=(
-            ".github/workflows"
-            "config"
-            "config/sources"
-            "config/transforms"
-            "config/workflows"
-            "config/rules"
-            "config/roles"
-            "config/access-profiles"
-            "config/identity-profiles"
-            "config/applications"
-            "config/policies"
-            "config/branding"
-            "environments"
-            "scripts"
-            "exports"
-            "dr-snapshots"
-          )
-
-          for DIR in "${REQUIRED_DIRS[@]}"
-          do
-            if [[ ! -d "$DIR" ]]; then
-              echo "Missing required directory: $DIR"
-              exit 1
-            fi
-          done
-
-          echo "Folder structure validated"
-
-      - name: Validate Environment Files
-        run: |
-
-          REQUIRED_FILES=(
-            "environments/dev.json"
-            "environments/uat.json"
-            "environments/prod.json"
-          )
-
-          for FILE in "${REQUIRED_FILES[@]}"
-          do
-            if [[ ! -f "$FILE" ]]; then
-              echo "Missing file: $FILE"
-              exit 1
-            fi
-          done
-
-          echo "Environment files validated"
-
-      - name: Validate Workflow Files
-        run: |
-
-          test -f .github/workflows/validate.yml
-          test -f .github/workflows/export.yml
-          test -f .github/workflows/deploy.yml
-
-      - name: Validate Script Files
-        run: |
-
-          test -f scripts/validate.sh
-          test -f scripts/export.sh
-          test -f scripts/deploy.sh
-
-      - name: Validate JSON Files
-        run: |
-
-          find config environments -name "*.json" | while read FILE
-          do
-            jq empty "$FILE"
-          done
-
-      - name: Validation Successful
-        run: echo "Repository validation passed"
+          chmod +x scripts/validate.sh
+          ./scripts/validate.sh
