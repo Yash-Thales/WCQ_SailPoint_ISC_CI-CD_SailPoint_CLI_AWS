@@ -81,8 +81,9 @@ while IFS= read -r -d '' JSON_FILE; do
     echo "⚠️ Warning: Found hardcoded tenant/SailPoint URL in '$JSON_FILE'. Recommend tokenization using variables."
   fi
 
-  # Check if there are keys containing secret/password/token whose values are non-null and do not start with $ or { (which indicates variable tokenization)
-  HAS_SECRET=$(jq '[paths(scalars) as $p | select($p[-1] | tostring | test("password|secret|token|key"; "i")) | getpath($p)] | map(select(. != null and . != "" and (tostring | test("^(\\$|\\{\\{)") | not))) | length' "$JSON_FILE" 2>/dev/null || echo 0)
+  # Check if there are keys containing secret/password/token/privatekey/apikey whose values are string and do not start with $ or { (which indicates variable tokenization)
+  # Also exclude common metadata terms like url, type, policy, enforce, expire, status, config, method, label, description, name, header, attribute
+  HAS_SECRET=$(jq '[paths(scalars) as $p | select(($p[-1] | tostring | test("password|secret|token|privatekey|private_key|apikey|api_key"; "i")) and ($p[-1] | tostring | test("url|type|policy|enforce|expire|status|config|method|label|description|name|header|attribute"; "i") | not)) | getpath($p)] | map(select(type == "string" and . != "" and (tostring | test("^(\\$|\\{\\{)") | not))) | length' "$JSON_FILE" 2>/dev/null || echo 0)
 
   if [[ "$HAS_SECRET" -gt 0 ]]; then
     echo "❌ Error: Potential plaintext hardcoded secret/password detected in '$JSON_FILE'."
