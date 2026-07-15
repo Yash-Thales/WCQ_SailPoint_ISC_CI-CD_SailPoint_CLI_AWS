@@ -81,7 +81,7 @@
         "id": "2fa76dc2968f4ab1bf4f634c429128b7",
         "name": "account",
         "created": "2026-07-02T06:07:23.572Z",
-        "modified": "2026-07-15T03:21:09.107Z"
+        "modified": "2026-07-15T03:55:49.620Z"
       }
     ],
     "connectorAttributes": {
@@ -91,7 +91,7 @@
       "deleteThresholdPercentage": 10,
       "connectionType": "direct",
       "spConnectorInstanceId": "526b34bd-8cdd-42e9-a099-4b7a2ac8837a",
-      "cloudCacheUpdate": "1784085669209",
+      "cloudCacheUpdate": "1784087749736",
       "templateApplication": "Activity Insights - Microsoft Entra ID",
       "healthy": true,
       "cloudDisplayName": "Test",

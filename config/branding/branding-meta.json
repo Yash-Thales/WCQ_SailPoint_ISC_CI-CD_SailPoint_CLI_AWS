@@ -1,3 +1,10 @@
 {
-  "error": "No message available"
+  "name": "Admin",
+  "productName": "Test",
+  "actionButtonColor": "011E69",
+  "activeLinkColor": "011E69",
+  "navigationColor": "011E69",
+  "emailFromAddress": null,
+  "standardLogoURL": null,
+  "loginInformationalMessage": null
 }

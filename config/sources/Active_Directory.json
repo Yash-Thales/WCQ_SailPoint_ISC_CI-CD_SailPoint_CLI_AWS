@@ -1028,7 +1028,7 @@
         "id": "31c75023a3d447c1bd0b9ccc08fadbb4",
         "name": "account",
         "created": "2026-01-28T04:25:47.392Z",
-        "modified": "2026-07-15T03:20:58.473Z"
+        "modified": "2026-07-15T03:55:38.817Z"
       },
       {
         "nativeObjectType": "Group",
@@ -1214,7 +1214,7 @@
         "id": "a80283bb5c5c4a5ab48142db7225dec6",
         "name": "group",
         "created": "2026-01-28T04:25:47.393Z",
-        "modified": "2026-07-15T03:20:58.666Z"
+        "modified": "2026-07-15T03:55:39.147Z"
       },
       {
         "nativeObjectType": "sharedMailbox",
@@ -1372,7 +1372,7 @@
         "id": "d51960e661344c8ead5f4be70ac271a5",
         "name": "sharedMailbox",
         "created": "2026-01-28T04:25:47.393Z",
-        "modified": "2026-07-15T03:20:58.811Z"
+        "modified": "2026-07-15T03:55:39.328Z"
       }
     ],
     "connectorAttributes": {
@@ -1418,7 +1418,7 @@
       "rollbackCreatedAccountOnError": "false",
       "useSSL": "false",
       "IQServiceHost": "10.0.0.61",
-      "cloudCacheUpdate": "1784085658930",
+      "cloudCacheUpdate": "1784087739479",
       "port": "389",
       "upgraderSkip": "true",
       "connectorName": "Active Directory",

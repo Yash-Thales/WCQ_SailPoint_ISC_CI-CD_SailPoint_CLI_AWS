@@ -140,7 +140,7 @@
         "id": "faef3cc8208341169e289275b33369df",
         "name": "account",
         "created": "2026-06-30T09:26:36.691Z",
-        "modified": "2026-07-15T03:21:00.766Z"
+        "modified": "2026-07-15T03:55:41.861Z"
       },
       {
         "nativeObjectType": "group",
@@ -191,7 +191,7 @@
         "id": "846eedd55f38484898aa795829b7aae2",
         "name": "group",
         "created": "2026-06-30T09:26:37.183Z",
-        "modified": "2026-07-15T03:21:00.928Z"
+        "modified": "2026-07-15T03:55:41.993Z"
       }
     ],
     "connectorAttributes": {
@@ -239,7 +239,7 @@
       "group.searchScope": "SUBTREE",
       "serviceAccount": "Administrator@test.com.au",
       "aggregationScheduleTimezone": "America/New_York",
-      "cloudCacheUpdate": "1784085661046",
+      "cloudCacheUpdate": "1784087742098",
       "healthy": false,
       "forestAdminPassword": "Yash1234!",
       "cloudDisplayName": "Yash - Active Directory",
