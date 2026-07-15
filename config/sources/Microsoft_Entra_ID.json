@@ -581,7 +581,7 @@
         "id": "5d3a483382ab416684b3d824666f58e9",
         "name": "account",
         "created": "2026-03-10T00:09:54.159Z",
-        "modified": "2026-03-10T00:09:54.159Z"
+        "modified": "2026-07-15T03:15:41.631Z"
       },
       {
         "nativeObjectType": null,
@@ -643,7 +643,7 @@
         "id": "2d317c134059474caa6c765887acf7fe",
         "name": "Azure Foundry",
         "created": "2026-03-10T00:09:54.159Z",
-        "modified": "2026-03-10T00:09:54.159Z"
+        "modified": "2026-07-15T03:15:41.888Z"
       },
       {
         "nativeObjectType": null,
@@ -738,7 +738,7 @@
         "id": "54d3188884f4422d8eacf65de22bbefe",
         "name": "Microsoft Studio Copilot",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:42.057Z"
       },
       {
         "nativeObjectType": "group",
@@ -918,7 +918,7 @@
         "id": "b1bd5025e9484fad9deb26feed6fa387",
         "name": "group",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:42.222Z"
       },
       {
         "nativeObjectType": "role",
@@ -999,7 +999,7 @@
         "id": "0b38ec02b23245eb8b1d211a4f26b191",
         "name": "role",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:42.406Z"
       },
       {
         "nativeObjectType": "servicePlan",
@@ -1080,7 +1080,7 @@
         "id": "272e3dd0280c4661b0f53f615791a803",
         "name": "servicePlan",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:42.583Z"
       },
       {
         "nativeObjectType": "azureRoleAssignment",
@@ -1139,7 +1139,7 @@
         "id": "6f6e485f768e48e4b17feedce2407880",
         "name": "azureRoleAssignment",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:42.760Z"
       },
       {
         "nativeObjectType": "managementGroup",
@@ -1198,7 +1198,7 @@
         "id": "aff2cc24c61c4724b90e6034fc9e2e98",
         "name": "managementGroup",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:42.923Z"
       },
       {
         "nativeObjectType": "subscription",
@@ -1290,7 +1290,7 @@
         "id": "73acf5167b6a463d940d8f794db8c742",
         "name": "subscription",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:43.085Z"
       },
       {
         "nativeObjectType": "resourceGroup",
@@ -1360,7 +1360,7 @@
         "id": "ddcd8ae9a9a2440fb0c04c9224577829",
         "name": "resourceGroup",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:43.283Z"
       },
       {
         "nativeObjectType": "channel",
@@ -1485,7 +1485,7 @@
         "id": "dd644b7faea341528c64e02796cfaeeb",
         "name": "channel",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:43.474Z"
       },
       {
         "nativeObjectType": "accessPackage",
@@ -1588,7 +1588,7 @@
         "id": "ff790fe8d7bc41a288469396995bcbf1",
         "name": "accessPackage",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:43.650Z"
       },
       {
         "nativeObjectType": "applicationRole",
@@ -1680,7 +1680,7 @@
         "id": "1879a7edf8af4770aecaa86eae62c08b",
         "name": "applicationRole",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:43.822Z"
       },
       {
         "nativeObjectType": "adminConsentedPermission",
@@ -1772,7 +1772,7 @@
         "id": "e4bb8baa3e394d869890399590b810d7",
         "name": "adminConsentedPermission",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:44.010Z"
       },
       {
         "nativeObjectType": "azureADEligibleRole",
@@ -1842,7 +1842,7 @@
         "id": "551cd1f84c594ade863f56e756d8d134",
         "name": "azureADEligibleRole",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:44.196Z"
       },
       {
         "nativeObjectType": "azureADActiveRole",
@@ -1912,7 +1912,7 @@
         "id": "0596d61c4a5548ea9d0829c9c14a3b0b",
         "name": "azureADActiveRole",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:44.368Z"
       },
       {
         "nativeObjectType": "azureEligibleRole",
@@ -1982,7 +1982,7 @@
         "id": "3f4931dd3ff74d6a8608bcc9ddf227cc",
         "name": "azureEligibleRole",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:44.662Z"
       },
       {
         "nativeObjectType": "azureActiveRole",
@@ -2052,7 +2052,7 @@
         "id": "8a5486c103c84ae7bc05b70773d2cd9d",
         "name": "azureActiveRole",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:44.841Z"
       },
       {
         "nativeObjectType": "administrativeUnit",
@@ -2155,7 +2155,7 @@
         "id": "8c37743f7b5047f991ade65a68595177",
         "name": "administrativeUnit",
         "created": "2026-03-10T00:09:54.160Z",
-        "modified": "2026-03-10T00:09:54.160Z"
+        "modified": "2026-07-15T03:15:45.050Z"
       }
     ],
     "connectorAttributes": {
@@ -2177,7 +2177,7 @@
       "deleteThresholdPercentage": 10,
       "supportsStatefulCommands": "true",
       "cloudAuthoritativeSourcePrecedence": 40,
-      "cloudCacheUpdate": 1783936682395,
+      "cloudCacheUpdate": "1784085345208",
       "templateApplication": "Microsoft Entra",
       "encrypted": "clientSecret, clientCertificate, privateKeyPassword, private_key, refresh_token, exchangeUserPassword",
       "healthy": false,

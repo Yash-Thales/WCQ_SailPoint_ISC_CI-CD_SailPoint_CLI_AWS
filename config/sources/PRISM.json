@@ -147,7 +147,7 @@
         "id": "66a5a09f866d478eba56994636ee0200",
         "name": "account",
         "created": "2026-01-28T04:26:00.421Z",
-        "modified": "2026-01-28T04:26:00.679Z"
+        "modified": "2026-07-15T03:15:34.568Z"
       },
       {
         "nativeObjectType": "group",
@@ -186,7 +186,7 @@
         "id": "4116f7f98e324d0e8677b01edcd727fa",
         "name": "group",
         "created": "2026-01-28T04:26:00.421Z",
-        "modified": "2026-01-28T04:26:01.851Z"
+        "modified": "2026-07-15T03:15:34.836Z"
       }
     ],
     "connectorAttributes": {
@@ -225,7 +225,7 @@
       "url": "jdbc:mysql://10.0.0.61/prism",
       "SQL": "select U.login,U.description,U.first,U.last,U.password,U.status,U.locked,U.lastLogin,UG.group_name as 'groups' from prism.users as U left join prism.users_groups as UG on U.login=UG.login order by login",
       "group.useStoredProcedureGetObject": false,
-      "cloudCacheUpdate": 1783921915940,
+      "cloudCacheUpdate": "1784085334933",
       "templateApplication": "JDBC Template",
       "group.isPermissionEnabled": false,
       "group.SQL": "select * from prism.groups",

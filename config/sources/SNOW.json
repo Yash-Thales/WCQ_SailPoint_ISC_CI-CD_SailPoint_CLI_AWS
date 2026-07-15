@@ -621,7 +621,7 @@
         "id": "e33655ab441242978380cf64d07ba1aa",
         "name": "account",
         "created": "2026-07-01T01:13:51.140Z",
-        "modified": "2026-07-01T01:13:51.140Z"
+        "modified": "2026-07-15T03:15:35.362Z"
       },
       {
         "nativeObjectType": "group",
@@ -834,7 +834,7 @@
         "id": "53f6ac3a22c44f76b49e8fa748fcb8f8",
         "name": "group",
         "created": "2026-07-01T01:13:51.140Z",
-        "modified": "2026-07-01T01:13:51.140Z"
+        "modified": "2026-07-15T03:15:35.693Z"
       },
       {
         "nativeObjectType": "role",
@@ -1104,7 +1104,7 @@
         "id": "5dee0847ea254eaaac4dfcb0abb46c53",
         "name": "role",
         "created": "2026-07-01T01:13:51.140Z",
-        "modified": "2026-07-01T01:13:51.140Z"
+        "modified": "2026-07-15T03:15:35.853Z"
       },
       {
         "nativeObjectType": null,
@@ -1342,7 +1342,7 @@
         "id": "66aed5d0e8c74ead8522d588f0359049",
         "name": "agent-aggregation",
         "created": "2026-07-01T01:13:51.140Z",
-        "modified": "2026-07-01T01:13:51.140Z"
+        "modified": "2026-07-15T03:15:35.996Z"
       }
     ],
     "connectorAttributes": {
@@ -1373,7 +1373,7 @@
       "retryCount": 1,
       "spConnectorSpecId": "ce44bcfe-af41-439e-99be-ca905bfb0085",
       "deleteThresholdPercentage": 10,
-      "cloudCacheUpdate": 1783936686893,
+      "cloudCacheUpdate": "1784085336116",
       "templateApplication": "ServiceNow SaaS",
       "healthy": false,
       "cloudDisplayName": "SNOW",

@@ -151,7 +151,7 @@
         "id": "cbe95d9ab36b4731a91e9a20027e8ea0",
         "name": "account",
         "created": "2026-07-03T00:14:37.734Z",
-        "modified": "2026-07-03T00:22:39.824Z"
+        "modified": "2026-07-15T03:15:36.301Z"
       },
       {
         "nativeObjectType": "Group",
@@ -265,7 +265,7 @@
         "id": "6db13369cdb7432691762107bf5da8f5",
         "name": "group",
         "created": "2026-07-03T00:14:37.734Z",
-        "modified": "2026-07-03T00:14:37.734Z"
+        "modified": "2026-07-15T03:15:36.384Z"
       }
     ],
     "connectorAttributes": {
@@ -279,6 +279,9 @@
       "group.indexColumn": "id",
       "delimiter": ",",
       "host": "local",
+      "group.indexColumns": [
+        "id"
+      ],
       "commentCharacter": "#",
       "group.mergeColumns": [
         "entitlements",
@@ -309,7 +312,6 @@
       ],
       "templateApplication": "DelimitedFile Template",
       "encrypted": "transportUserPassword,pgpPrivateKey,pgpPrivateKeyPassword,s3SecretKey,scpPrivateKey,PassphraseForPrivateKey,ftpsClientCertificatePassphrase",
-      "indexColumn": "EmployeeID",
       "healthy": true,
       "cloudDisplayName": "Faisal Source 2 Human_Identities_Delimited",
       "connectorName": "Delimited File",

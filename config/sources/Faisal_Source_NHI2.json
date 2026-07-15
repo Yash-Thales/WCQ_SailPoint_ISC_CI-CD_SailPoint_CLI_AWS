@@ -162,7 +162,7 @@
         "id": "e1af1946ffc544a59e1b3ad9b31a09e5",
         "name": "account",
         "created": "2026-06-24T03:08:43.072Z",
-        "modified": "2026-06-24T04:50:14.117Z"
+        "modified": "2026-07-15T03:15:36.605Z"
       },
       {
         "nativeObjectType": "Group",
@@ -276,7 +276,7 @@
         "id": "dfe229563fb5486d846a9e1e25112f20",
         "name": "group",
         "created": "2026-06-24T03:08:43.072Z",
-        "modified": "2026-06-24T03:08:43.072Z"
+        "modified": "2026-07-15T03:15:36.687Z"
       }
     ],
     "connectorAttributes": {
@@ -292,6 +292,9 @@
       "recommendationStatus": "TERMINATED",
       "delimiter": ",",
       "host": "local",
+      "group.indexColumns": [
+        "id"
+      ],
       "commentCharacter": "#",
       "group.mergeColumns": [
         "entitlements",
@@ -322,7 +325,6 @@
       ],
       "templateApplication": "DelimitedFile Template",
       "encrypted": "transportUserPassword,pgpPrivateKey,pgpPrivateKeyPassword,s3SecretKey,scpPrivateKey,PassphraseForPrivateKey,ftpsClientCertificatePassphrase",
-      "indexColumn": "FirstName",
       "healthy": true,
       "cloudDisplayName": "Faisal Source NHI2",
       "connectorName": "Delimited File",
@@ -429,6 +431,36 @@
             "isMultiValued": false
           }
         ]
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
       },
       {
         "name": "Service Account",

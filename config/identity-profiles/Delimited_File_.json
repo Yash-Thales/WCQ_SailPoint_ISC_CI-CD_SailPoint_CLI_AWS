@@ -18,7 +18,7 @@
       "id": "6b618f5af8f24383b041032827ca5ea8",
       "name": "Delimated File - Test"
     },
-    "identityRefreshRequired": true,
+    "identityRefreshRequired": false,
     "identityCount": 5,
     "identityAttributeConfig": {
       "enabled": true,
@@ -85,6 +85,6 @@
     "id": "c8475d5f023f427d89a7a8ba424ca0a1",
     "name": "Delimited File ",
     "created": "2026-03-18T01:21:12.985Z",
-    "modified": "2026-06-15T23:37:45.598Z"
+    "modified": "2026-07-15T03:15:50.106Z"
   }
 }

@@ -149,7 +149,7 @@
         "id": "767b6a7a87584b2c8ecb0c028423eeb2",
         "name": "account",
         "created": "2026-03-04T00:48:01.568Z",
-        "modified": "2026-03-10T00:49:34.111Z"
+        "modified": "2026-07-15T03:15:40.437Z"
       },
       {
         "nativeObjectType": "group",
@@ -163,7 +163,7 @@
         "id": "3035f1f64db7416baad895bbd3741b1f",
         "name": "group",
         "created": "2026-03-04T00:48:01.568Z",
-        "modified": "2026-03-04T00:48:01.568Z"
+        "modified": "2026-07-15T03:15:40.541Z"
       }
     ],
     "connectorAttributes": {
