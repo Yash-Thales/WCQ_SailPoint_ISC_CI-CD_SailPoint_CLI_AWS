@@ -234,7 +234,7 @@
       "cloudCacheUpdate": "1784087742098",
       "healthy": false,
       "forestAdminPassword": "${forestAdminPassword}",
-      "cloudDisplayName": "Yash - Active Directory",
+      "cloudDisplayName": "Active Directory2",
       "connectorName": "Active Directory",
       "adSearchTimeout": 120,
       "fullAggregationSchedule": "Daily at 02:00",
