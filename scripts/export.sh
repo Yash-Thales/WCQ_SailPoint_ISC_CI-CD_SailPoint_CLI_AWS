@@ -46,7 +46,7 @@ mkdir -p config/branding
 BRANDING_URL="${SAIL_BASE_URL}/beta/brandings"
 
 # Fetch default branding info from list
-BRANDING_RESPONSE=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" "$BRANDING_URL" || echo "")
+BRANDING_RESPONSE=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "X-SailPoint-Experimental: true" "$BRANDING_URL" || echo "")
 
 if [[ -n "$BRANDING_RESPONSE" && ! "$BRANDING_RESPONSE" =~ "Error" && "$BRANDING_RESPONSE" != "" ]]; then
   # Parse array or object to save the default config
