@@ -241,7 +241,7 @@
       "aggregationScheduleTimezone": "America/New_York",
       "cloudCacheUpdate": 1784051395721,
       "healthy": false,
-      "forestAdminPassword": "Yash1234!",
+      "forestAdminPassword": "${forestAdminPassword}",
       "cloudDisplayName": "Yash - Active Directory",
       "connectorName": "Active Directory",
       "adSearchTimeout": 120,

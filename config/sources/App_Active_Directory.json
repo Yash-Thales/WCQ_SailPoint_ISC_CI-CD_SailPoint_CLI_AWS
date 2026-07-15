@@ -201,7 +201,7 @@
       "groupHierarchy": false,
       "cloudCacheUpdate": 1784051395715,
       "healthy": false,
-      "forestAdminPassword": "Yash1234!",
+      "forestAdminPassword": "${forestAdminPassword}",
       "cloudDisplayName": "App_Active Directory",
       "connectorName": "Active Directory",
       "adSearchTimeout": 120,

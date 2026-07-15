@@ -1,4 +1,5 @@
 {
   "environment": "UAT",
-  "domainPath": "uat.company.local"
+  "domainPath": "uat.company.local",
+  "forestAdminPassword": "Yash1234!"
 }
