@@ -162,8 +162,8 @@ done
 
 if [[ "$IMPORT_STATUS" != "COMPLETE" ]]; then
   echo "❌ Error: Import job failed with status $IMPORT_STATUS"
-  # Fetch details if available
-  curl -s -H "Authorization: Bearer $ACCESS_TOKEN" "${SAIL_BASE_URL}/beta/sp-config/import/${IMPORT_JOB_ID}" | jq . || true
+  echo "Fetching detailed error results..."
+  curl -s -H "Authorization: Bearer $ACCESS_TOKEN" "${SAIL_BASE_URL}/beta/sp-config/import/${IMPORT_JOB_ID}/download" | jq . || true
   exit 1
 fi
 
