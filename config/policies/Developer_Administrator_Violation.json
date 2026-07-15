@@ -42,13 +42,13 @@
         "criteriaList": [
           {
             "type": "ENTITLEMENT",
-            "id": "e4bd5d60cdf1375fb46033a3f6f5e3c4",
-            "name": "Admins"
+            "id": "1b6d9bf273f63ca39e9ced7dc8acbacf",
+            "name": "SysAdministration"
           },
           {
             "type": "ENTITLEMENT",
-            "id": "1b6d9bf273f63ca39e9ced7dc8acbacf",
-            "name": "SysAdministration"
+            "id": "e4bd5d60cdf1375fb46033a3f6f5e3c4",
+            "name": "Admins"
           }
         ]
       },
