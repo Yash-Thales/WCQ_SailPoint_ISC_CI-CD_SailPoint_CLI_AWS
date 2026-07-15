@@ -50,9 +50,9 @@ BRANDING_RESPONSE=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "X-SailP
 
 if [[ -n "$BRANDING_RESPONSE" && ! "$BRANDING_RESPONSE" =~ "Error" && "$BRANDING_RESPONSE" != "" ]]; then
   # Parse array or object to save the default config
-  if echo "$BRANDING_RESPONSE" | jq -e 'isarray' >/dev/null 2>&1; then
+  if echo "$BRANDING_RESPONSE" | jq -e 'type == "array"' >/dev/null 2>&1; then
     echo "$BRANDING_RESPONSE" | jq '.[0] | del(.id, .created, .modified)' > config/branding/branding-meta.json
-  elif echo "$BRANDING_RESPONSE" | jq -e '.results' >/dev/null 2>&1; then
+  elif echo "$BRANDING_RESPONSE" | jq -e '.results != null' >/dev/null 2>&1; then
     echo "$BRANDING_RESPONSE" | jq '.results[0] | del(.id, .created, .modified)' > config/branding/branding-meta.json
   else
     echo "$BRANDING_RESPONSE" | jq 'del(.id, .created, .modified)' > config/branding/branding-meta.json
