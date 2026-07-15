@@ -76,6 +76,7 @@ if [[ -f "config/branding/branding-meta.json" && -s "config/branding/branding-me
   BRANDING_DEP_URL="${SAIL_BASE_URL}/beta/brandings/default"
   BRANDING_RESP=$(curl -s -X PUT "$BRANDING_DEP_URL" \
     -H "Authorization: Bearer $ACCESS_TOKEN" \
+    -H "X-SailPoint-Experimental: true" \
     "${CURL_ARGS[@]}")
     
   if echo "$BRANDING_RESP" | grep -q "Error"; then
