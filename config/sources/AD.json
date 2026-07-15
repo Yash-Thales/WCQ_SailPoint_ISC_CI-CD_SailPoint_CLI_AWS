@@ -18,10 +18,7 @@
       "name": "yash.mehta"
     },
     "accountCorrelationRule": null,
-    "managerCorrelationRule": {
-      "type": "RULE",
-      "name": "Cloud Correlate Manager by AccountId"
-    },
+    "managerCorrelationRule": null,
     "beforeProvisioningRule": null,
     "features": [
       "AUTHENTICATE",
