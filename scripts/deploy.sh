@@ -151,7 +151,7 @@ echo "Import Job ID: $IMPORT_JOB_ID"
 # Poll status
 IMPORT_STATUS="PENDING"
 echo "Polling import job status..."
-while [[ "$IMPORT_STATUS" == "PENDING" || "$IMPORT_STATUS" == "IN_PROGRESS" ]]; do
+while [[ "$IMPORT_STATUS" == "PENDING" || "$IMPORT_STATUS" == "IN_PROGRESS" || "$IMPORT_STATUS" == "NOT_STARTED" ]]; do
   sleep 5
   IMPORT_STATUS_RESP=$(curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
     "${SAIL_BASE_URL}/beta/sp-config/import/${IMPORT_JOB_ID}")

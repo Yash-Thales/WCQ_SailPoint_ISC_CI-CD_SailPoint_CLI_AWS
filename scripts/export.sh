@@ -97,7 +97,7 @@ echo "Export Job ID: $JOB_ID"
 # Poll status
 STATUS="PENDING"
 echo "Polling export job status..."
-while [[ "$STATUS" == "PENDING" || "$STATUS" == "IN_PROGRESS" ]]; do
+while [[ "$STATUS" == "PENDING" || "$STATUS" == "IN_PROGRESS" || "$STATUS" == "NOT_STARTED" ]]; do
   sleep 5
   JOB_STATUS_RESP=$(curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
     "${SAIL_BASE_URL}/beta/sp-config/export/${JOB_ID}")
