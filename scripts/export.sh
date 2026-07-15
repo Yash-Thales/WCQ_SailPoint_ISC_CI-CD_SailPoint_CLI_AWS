@@ -43,7 +43,7 @@ echo "✔ Authentication successful."
 # 1. Export Branding Configuration
 echo "Exporting Branding Configuration..."
 mkdir -p config/branding
-BRANDING_URL="${SAIL_BASE_URL}/beta/brandings"
+BRANDING_URL="${SAIL_BASE_URL}/v3/brandings"
 
 # Fetch default branding info from list
 BRANDING_RESPONSE=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "X-SailPoint-Experimental: true" "$BRANDING_URL" || echo "")
