@@ -1,12 +1,10 @@
 {
   "version": 1,
   "self": {
-    "id": "e3a685f479734c5b9e7644b6f0617cfb",
     "name": "Yash - Active Directory",
     "type": "SOURCE"
   },
   "object": {
-    "id": "e3a685f479734c5b9e7644b6f0617cfb",
     "name": "Yash - Active Directory",
     "type": "Active Directory - Direct",
     "connectorClass": "sailpoint.connector.ADLDAPConnector",
@@ -16,13 +14,11 @@
     "provisionAsCsv": false,
     "owner": {
       "type": "IDENTITY",
-      "id": "3ca3a84641db4c168372dc2742c46343",
       "name": "yash.mehta"
     },
     "accountCorrelationRule": null,
     "managerCorrelationRule": {
       "type": "RULE",
-      "id": "8c5172ec35154c81910126c10ae0d125",
       "name": "Cloud Correlate Manager by AccountId"
     },
     "beforeProvisioningRule": null,
@@ -137,10 +133,8 @@
             "isManaged": false
           }
         ],
-        "id": "faef3cc8208341169e289275b33369df",
-        "name": "account",
-        "created": "2026-06-30T09:26:36.691Z",
-        "modified": "2026-07-15T03:55:41.861Z"
+   
+        "name": "account"
       },
       {
         "nativeObjectType": "group",
@@ -188,10 +182,8 @@
             "isManaged": false
           }
         ],
-        "id": "846eedd55f38484898aa795829b7aae2",
-        "name": "group",
-        "created": "2026-06-30T09:26:37.183Z",
-        "modified": "2026-07-15T03:55:41.993Z"
+        
+        "name": "group"
       }
     ],
     "connectorAttributes": {
@@ -241,7 +233,7 @@
       "aggregationScheduleTimezone": "America/New_York",
       "cloudCacheUpdate": "1784087742098",
       "healthy": false,
-      "forestAdminPassword": "Yash1234!",
+      "forestAdminPassword": "${forestAdminPassword}",
       "cloudDisplayName": "Yash - Active Directory",
       "connectorName": "Active Directory",
       "adSearchTimeout": 120,
