@@ -73,7 +73,7 @@ if [[ -f "config/branding/branding-meta.json" && -s "config/branding/branding-me
   fi
   
   # Perform PUT request to branding endpoint
-  BRANDING_DEP_URL="${SAIL_BASE_URL}/beta/brandings/default"
+  BRANDING_DEP_URL="${SAIL_BASE_URL}/v3/brandings/default"
   BRANDING_RESP=$(curl -s -X PUT "$BRANDING_DEP_URL" \
     -H "Authorization: Bearer $ACCESS_TOKEN" \
     -H "X-SailPoint-Experimental: true" \
