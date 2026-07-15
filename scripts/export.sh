@@ -77,12 +77,21 @@ EXPORT_PAYLOAD='{
   ]
 }'
 
-EXPORT_INIT=$(curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
+EXPORT_RESPONSE=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -X POST "${SAIL_BASE_URL}/beta/sp-config/export" \
   -d "$EXPORT_PAYLOAD")
 
-JOB_ID=$(echo "$EXPORT_INIT" | jq -r '.jobId')
+EXPORT_BODY=$(echo "$EXPORT_RESPONSE" | sed '$d')
+EXPORT_STATUS=$(echo "$EXPORT_RESPONSE" | tail -n1)
+
+if [[ "$EXPORT_STATUS" -ne 200 && "$EXPORT_STATUS" -ne 202 ]]; then
+  echo "❌ Error: Triggering export job failed with HTTP status $EXPORT_STATUS"
+  echo "Response: $EXPORT_BODY"
+  exit 1
+fi
+
+JOB_ID=$(echo "$EXPORT_BODY" | jq -r '.jobId')
 echo "Export Job ID: $JOB_ID"
 
 # Poll status
