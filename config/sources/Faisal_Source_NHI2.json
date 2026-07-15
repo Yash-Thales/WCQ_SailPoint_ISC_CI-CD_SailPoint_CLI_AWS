@@ -162,7 +162,7 @@
         "id": "e1af1946ffc544a59e1b3ad9b31a09e5",
         "name": "account",
         "created": "2026-06-24T03:08:43.072Z",
-        "modified": "2026-07-15T03:20:57.484Z"
+        "modified": "2026-07-15T03:55:37.433Z"
       },
       {
         "nativeObjectType": "Group",
@@ -276,7 +276,7 @@
         "id": "dfe229563fb5486d846a9e1e25112f20",
         "name": "group",
         "created": "2026-06-24T03:08:43.072Z",
-        "modified": "2026-07-15T03:20:57.572Z"
+        "modified": "2026-07-15T03:55:37.540Z"
       }
     ],
     "connectorAttributes": {
@@ -431,6 +431,102 @@
             "isMultiValued": false
           }
         ]
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
+      },
+      {
+        "name": "Service Account",
+        "description": null,
+        "usageType": "CREATE_MACHINE_ACCOUNT",
+        "fields": []
       },
       {
         "name": "Service Account",
