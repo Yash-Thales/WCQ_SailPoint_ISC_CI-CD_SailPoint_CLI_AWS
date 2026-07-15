@@ -15,7 +15,8 @@
     "provisionAsCsv": false,
     "owner": {
       "type": "IDENTITY",
-      "name": "yash.mehta"
+      "id": "4c038ca923cb4f30b461f07c100d2338",
+      "name": "gavin.leung"
     },
     "accountCorrelationRule": null,
     "managerCorrelationRule": null,
