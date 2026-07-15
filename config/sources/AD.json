@@ -1,11 +1,11 @@
 {
   "version": 1,
   "self": {
-    "name": "Yash - Active Directory",
+    "name": "Active Directory2",
     "type": "SOURCE"
   },
   "object": {
-    "name": "Yash - Active Directory",
+    "name": "Active Directory2",
     "type": "Active Directory - Direct",
     "connectorClass": "sailpoint.connector.ADLDAPConnector",
     "connectorScriptName": "active-directory-angularsc",
