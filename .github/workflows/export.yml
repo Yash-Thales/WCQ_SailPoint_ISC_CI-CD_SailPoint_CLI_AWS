@@ -13,6 +13,9 @@ on:
           - UAT
           - PROD
 
+permissions:
+  contents: write
+
 jobs:
   export:
     runs-on: ubuntu-latest
