@@ -47,6 +47,7 @@ BRANDING_URL="${SAIL_BASE_URL}/v3/brandings/default"
 
 # Fetch default branding info
 BRANDING_RESPONSE=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "X-SailPoint-Experimental: true" "$BRANDING_URL" || echo "")
+echo "DEBUG: Raw Branding API Response: $BRANDING_RESPONSE"
 
 if [[ -n "$BRANDING_RESPONSE" && ! "$BRANDING_RESPONSE" =~ "Error" && "$BRANDING_RESPONSE" != "" ]]; then
   echo "$BRANDING_RESPONSE" | jq 'del(.id, .created, .modified)' > config/branding/branding-meta.json
