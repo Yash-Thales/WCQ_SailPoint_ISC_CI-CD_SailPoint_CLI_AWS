@@ -75,8 +75,11 @@ EXPORT_PAYLOAD='{
     "IDENTITY_PROFILE",
     "ROLE",
     "RULE",
+    "SOD_POLICY",
     "SOURCE",
-    "TRANSFORM"
+    "TRANSFORM",
+    "TRIGGER_SUBSCRIPTION",
+    "WORKFLOW"
   ]
 }'
 
