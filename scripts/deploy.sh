@@ -107,7 +107,18 @@ MERGED_OBJECTS_FILE="exports/merged_objects.json"
 echo '{"objects":[]}' > "$MERGED_OBJECTS_FILE"
 
 # Collect config files (excluding branding)
-CONFIG_FILES=$(find config -type f -name "*.json" ! -path "config/branding/*")
+echo "Running incremental deployment (changed files only)..."
+# Fetch list of modified/added config JSON files in the last commit
+if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+  CONFIG_FILES=$(git diff --name-only --diff-filter=d HEAD~1 HEAD | grep -E '^config/.*\.json$' | grep -v '^config/branding/' || echo "")
+else
+  # Fallback if there is no previous commit (e.g. first run on branch)
+  CONFIG_FILES=$(git diff --name-only --diff-filter=d HEAD | grep -E '^config/.*\.json$' | grep -v '^config/branding/' || echo "")
+fi
+
+if [[ -z "$CONFIG_FILES" ]]; then
+  echo "ℹ No configuration files changed in the last commit."
+fi
 
 for FILE in $CONFIG_FILES; do
   echo "Processing $FILE..."
