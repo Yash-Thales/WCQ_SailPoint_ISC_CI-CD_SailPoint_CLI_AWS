@@ -43,20 +43,13 @@ echo "✔ Authentication successful."
 # 1. Export Branding Configuration
 echo "Exporting Branding Configuration..."
 mkdir -p config/branding
-BRANDING_URL="${SAIL_BASE_URL}/v3/brandings"
+BRANDING_URL="${SAIL_BASE_URL}/v3/brandings/default"
 
-# Fetch default branding info from list
+# Fetch default branding info
 BRANDING_RESPONSE=$(curl -s -H "Authorization: Bearer $ACCESS_TOKEN" -H "X-SailPoint-Experimental: true" "$BRANDING_URL" || echo "")
 
 if [[ -n "$BRANDING_RESPONSE" && ! "$BRANDING_RESPONSE" =~ "Error" && "$BRANDING_RESPONSE" != "" ]]; then
-  # Parse array or object to save the default config
-  if echo "$BRANDING_RESPONSE" | jq -e 'type == "array"' >/dev/null 2>&1; then
-    echo "$BRANDING_RESPONSE" | jq '.[0] | del(.id, .created, .modified)' > config/branding/branding-meta.json
-  elif echo "$BRANDING_RESPONSE" | jq -e '.results != null' >/dev/null 2>&1; then
-    echo "$BRANDING_RESPONSE" | jq '.results[0] | del(.id, .created, .modified)' > config/branding/branding-meta.json
-  else
-    echo "$BRANDING_RESPONSE" | jq 'del(.id, .created, .modified)' > config/branding/branding-meta.json
-  fi
+  echo "$BRANDING_RESPONSE" | jq 'del(.id, .created, .modified)' > config/branding/branding-meta.json
   echo "✔ Exported default branding metadata to config/branding/branding-meta.json."
 else
   echo "⚠️ Warning: Failed to retrieve default branding. Continuing with general configs."
