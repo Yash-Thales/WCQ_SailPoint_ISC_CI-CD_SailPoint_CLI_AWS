@@ -125,8 +125,10 @@ for FILE in $CONFIG_FILES; do
   # Append to merged objects array
   # We validate if it contains "self" and "object" structure
   if jq -e '.self and .object' <<< "$FILE_CONTENT" >/dev/null 2>&1; then
-    jq --argjson new_obj "$FILE_CONTENT" '.objects += [$new_obj]' "$MERGED_OBJECTS_FILE" > "${MERGED_OBJECTS_FILE}.tmp"
+    echo "$FILE_CONTENT" > temp_object.json
+    jq --slurpfile new_obj temp_object.json '.objects += $new_obj' "$MERGED_OBJECTS_FILE" > "${MERGED_OBJECTS_FILE}.tmp"
     mv "${MERGED_OBJECTS_FILE}.tmp" "$MERGED_OBJECTS_FILE"
+    rm -f temp_object.json
   else
     echo "⚠️ Warning: File $FILE does not match standard sp-config structure. Skipping."
   fi
