@@ -1,0 +1,73 @@
+name: Deploy SaaS Connectors
+
+on:
+  push:
+    paths:
+      - 'connectors/**'
+    branches:
+      - dev
+      - uat
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Manual target environment (DEV, UAT, PROD)'
+        required: true
+        default: 'DEV'
+        type: choice
+        options:
+          - DEV
+          - UAT
+          - PROD
+
+jobs:
+  deploy-connector:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: >-
+        ${{ 
+          github.event_name == 'workflow_dispatch' && github.event.inputs.environment ||
+          github.ref_name == 'main' && 'PROD' || 
+          github.ref_name == 'uat' && 'UAT' || 
+          'DEV' 
+        }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Resolve Environment
+        run: |
+          TARGET_ENV=""
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            TARGET_ENV="${{ github.event.inputs.environment }}"
+          elif [[ "${GITHUB_REF_NAME}" == "main" ]]; then
+            TARGET_ENV="PROD"
+          elif [[ "${GITHUB_REF_NAME}" == "uat" ]]; then
+            TARGET_ENV="UAT"
+          else
+            TARGET_ENV="DEV"
+          fi
+          
+          if [[ "$TARGET_ENV" == "PROD" ]]; then
+            echo "SAIL_BASE_URL=${{ secrets.PROD_TENANT_URL }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_ID=${{ secrets.PROD_CLIENT_ID }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_SECRET=${{ secrets.PROD_CLIENT_SECRET }}" >> $GITHUB_ENV
+          elif [[ "$TARGET_ENV" == "UAT" ]]; then
+            echo "SAIL_BASE_URL=${{ secrets.UAT_TENANT_URL }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_ID=${{ secrets.UAT_CLIENT_ID }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_SECRET=${{ secrets.UAT_CLIENT_SECRET }}" >> $GITHUB_ENV
+          else
+            echo "SAIL_BASE_URL=${{ secrets.DEV_TENANT_URL }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_ID=${{ secrets.DEV_CLIENT_ID }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_SECRET=${{ secrets.DEV_CLIENT_SECRET }}" >> $GITHUB_ENV
+          fi
+
+      - name: Upload SaaS Connector
+        uses: sailpoint-oss/upload-saas-connector@v1
+        with:
+          client-id: ${{ env.SAIL_CLIENT_ID }}
+          client-secret: ${{ env.SAIL_CLIENT_SECRET }}
+          base-url: ${{ env.SAIL_BASE_URL }}
+          connector-dir: ./connectors/custom-connector
