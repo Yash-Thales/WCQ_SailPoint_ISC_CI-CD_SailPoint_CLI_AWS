@@ -63,17 +63,17 @@ jobs:
           echo "ENV_NAME=$TARGET_ENV" >> $GITHUB_ENV
           
           if [[ "$TARGET_ENV" == "PROD" ]]; then
-            echo "SAIL_BASE_URL=${{ secrets.PROD_TENANT_URL }}" >> $GITHUB_ENV
-            echo "SAIL_CLIENT_ID=${{ secrets.PROD_CLIENT_ID }}" >> $GITHUB_ENV
-            echo "SAIL_CLIENT_SECRET=${{ secrets.PROD_CLIENT_SECRET }}" >> $GITHUB_ENV
+            echo "SAIL_BASE_URL=${{ secrets.PROD_TENANT_URL || secrets.SAIL_BASE_URL }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_ID=${{ secrets.PROD_CLIENT_ID || secrets.SAIL_CLIENT_ID }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_SECRET=${{ secrets.PROD_CLIENT_SECRET || secrets.SAIL_CLIENT_SECRET }}" >> $GITHUB_ENV
           elif [[ "$TARGET_ENV" == "UAT" ]]; then
-            echo "SAIL_BASE_URL=${{ secrets.UAT_TENANT_URL }}" >> $GITHUB_ENV
-            echo "SAIL_CLIENT_ID=${{ secrets.UAT_CLIENT_ID }}" >> $GITHUB_ENV
-            echo "SAIL_CLIENT_SECRET=${{ secrets.UAT_CLIENT_SECRET }}" >> $GITHUB_ENV
+            echo "SAIL_BASE_URL=${{ secrets.UAT_TENANT_URL || secrets.SAIL_BASE_URL }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_ID=${{ secrets.UAT_CLIENT_ID || secrets.SAIL_CLIENT_ID }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_SECRET=${{ secrets.UAT_CLIENT_SECRET || secrets.SAIL_CLIENT_SECRET }}" >> $GITHUB_ENV
           else
-            echo "SAIL_BASE_URL=${{ secrets.DEV_TENANT_URL }}" >> $GITHUB_ENV
-            echo "SAIL_CLIENT_ID=${{ secrets.DEV_CLIENT_ID }}" >> $GITHUB_ENV
-            echo "SAIL_CLIENT_SECRET=${{ secrets.DEV_CLIENT_SECRET }}" >> $GITHUB_ENV
+            echo "SAIL_BASE_URL=${{ secrets.DEV_TENANT_URL || secrets.SAIL_BASE_URL }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_ID=${{ secrets.DEV_CLIENT_ID || secrets.SAIL_CLIENT_ID }}" >> $GITHUB_ENV
+            echo "SAIL_CLIENT_SECRET=${{ secrets.DEV_CLIENT_SECRET || secrets.SAIL_CLIENT_SECRET }}" >> $GITHUB_ENV
           fi
 
       - name: Run Deployment Script
