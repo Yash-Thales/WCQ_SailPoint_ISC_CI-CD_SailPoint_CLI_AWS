@@ -1,5 +1,3 @@
 {
-  "environment": "DEV",
-  "domainPath": "dev.company.local",
-  "forestAdminPassword": "Yash1234!"
+  "domainPath": ""
 }
