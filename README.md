@@ -4,40 +4,85 @@ This repository contains the complete, production-ready GitOps CI/CD template fo
 
 ---
 
+## 🚀 Quick Start for New Developers (Beginner-Friendly)
+
+If you are a new developer onboarding to this project, follow this 3-step guide to get your first change deployed in under 2 minutes:
+
+### Step 1: Clone and Switch Branch
+Open your terminal and run:
+```bash
+# 1. Clone the repository to your computer
+git clone https://github.com/Yash-Thales/WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS.git
+
+# 2. Enter the repository folder
+cd WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS
+
+# 3. Switch to the dev branch (where you will do your testing)
+git checkout dev
+```
+
+### Step 2: Make a Test Change
+*   Open the file **`config/branding/branding-meta.json`** in your editor.
+*   Change the navigation color to black: `"navigationColor": "#000000"` (remember the `#` prefix).
+*   Save the file.
+
+### Step 3: Commit and Push
+```bash
+# 1. Stage the changed file
+git add config/branding/branding-meta.json
+
+# 2. Commit the change with a description
+git commit -m "style: change brand navigation color to black"
+
+# 3. Push to GitHub
+git push origin dev
+```
+*That's it!* Go to the **Actions** tab on GitHub to watch your deployment pipeline validate the JSON syntax, load secrets from AWS, and deploy your changes to the DEV tenant automatically.
+
+---
+
 ## 1. Pipeline Architecture
 
+<div align="center">
+
+```mermaid
+graph TD
+    classDef dev fill:#17a2b8,stroke:#117a8b,stroke-width:2px,color:#fff;
+    classDef git fill:#28a745,stroke:#1e7e34,stroke-width:2px,color:#fff;
+    classDef pipeline fill:#007bff,stroke:#0056b3,stroke-width:2px,color:#fff;
+    classDef aws fill:#ff9900,stroke:#d68100,stroke-width:2px,color:#111;
+    classDef sp fill:#6f42c1,stroke:#5a32a3,stroke-width:2px,color:#fff;
+
+    subgraph Workspace ["1. Developer Workspace"]
+        A[Developer Edits Configs]:::dev --> B[git push / PR]:::dev
+    end
+
+    subgraph GitHub ["2. GitHub Repositories"]
+        B --> C{Branch Target?}:::git
+        C -- dev branch --> D[DEV Runner]:::git
+        C -- uat branch --> E[UAT Runner <br>1 Reviewer Gate]:::git
+        C -- main branch --> F[PROD Runner <br>2 Reviewer Gates]:::git
+    end
+
+    subgraph Runner ["3. GitHub Actions Execution"]
+        D & E & F --> G[Validate JSON Syntax]:::pipeline
+        G --> H[Install SailPoint CLI]:::pipeline
+        H --> I[Configure AWS Credentials]:::pipeline
+    end
+
+    subgraph SecretVault ["4. Secrets Manager"]
+        I --> J[Fetch Secret JSON <br>sailpoint-config-*]:::aws
+        J --> K[Mask Secret Values <br>::add-mask::]:::aws
+    end
+
+    subgraph Deploy ["5. SailPoint Integration"]
+        K --> L[deploy_cli.sh Compilation]:::sp
+        L --> M[Update UI Branding <br>REST API PUT /v3/brandings]:::sp
+        M --> N[Import Config Package <br>sail spconfig import]:::sp
+    end
 ```
-[Developer Edits JSONs]
-         │
-         ▼
-    [git push]
-         │
-  ┌──────┴──────────────────────────┐
-  ▼                                 ▼
-[dev branch]                   [uat / main branches]
-  │                                 │
-  ▼ (Direct)                        ▼ (Requires Approval)
-[DEV Runner]                   [UAT (1 Reviewer) / PROD (2 Reviewers)]
-  │                                 │
-  ├─────────────────────────────────┘
-  ▼
-[1. Validate JSON Syntax]
-  │
-  ▼
-[2. Configure AWS Credentials] (OIDC or IAM Keys)
-  │
-  ▼
-[3. Fetch Secret String (JSON)] (from AWS Secrets Manager)
-  │
-  ▼
-[4. Mask Secrets (***)] (GitHub Actions log parser)
-  │
-  ▼
-[5. Run deploy_cli.sh]
-  ├─► Compile & Tokenize changed config JSONs
-  ├─► Update UI Branding via REST API (PUT /v3/brandings/default)
-  └─► Import package via SailPoint CLI (sail spconfig import)
-```
+
+</div>
 
 ---
 
