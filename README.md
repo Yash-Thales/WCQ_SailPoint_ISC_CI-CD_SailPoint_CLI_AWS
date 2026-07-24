@@ -102,34 +102,32 @@ The pipeline dynamically maps branches to environments and enforces deployment a
 
 | Git Branch | Target Tenant | Approval Gates | Authentication Source |
 | :--- | :--- | :--- | :--- |
-| **`dev`** | DEV/Sandbox | **Direct Deploy** (Immediate) | GitHub Secrets (`DEV_CLIENT_ID`, etc.) |
-| **`uat`** | UAT/Staging | **1 Required Reviewer** | GitHub Secrets (`UAT_CLIENT_ID`, etc.) |
-| **`main`** | PROD/Production | **2 Required Reviewers** | GitHub Secrets (`PROD_CLIENT_ID`, etc.) |
+| **`dev`** | DEV/Sandbox | **Direct Deploy** (Immediate) | GitHub Secret / AWS Integration |
+| **`uat`** | UAT/Staging | **1 Required Reviewer** | GitHub Secret / AWS Integration |
+| **`main`** | PROD/Production | **2 Required Reviewers** | GitHub Secret / AWS Integration |
 
 ---
 
 ## 4. Secrets Configuration
 
-### Step 1: Configure Tenant Connection Credentials in GitHub Secrets
-To allow the GitHub Actions runner to authenticate with your SailPoint tenants, add the following Repository Secrets in GitHub (`Settings` -> `Secrets and variables` -> `Actions` -> `Repository secrets`):
-*   `DEV_TENANT_URL`, `DEV_CLIENT_ID`, `DEV_CLIENT_SECRET`
-*   `UAT_TENANT_URL`, `UAT_CLIENT_ID`, `UAT_CLIENT_SECRET`
-*   `PROD_TENANT_URL`, `PROD_CLIENT_ID`, `PROD_CLIENT_SECRET`
+### Step 1: Configure AWS Secrets Manager
+For each environment, store your target connector credentials (like Active Directory domain admin passwords) inside your AWS Secrets Manager vault under:
+1.  **DEV:** `AWS_Secrets_Dev`
+2.  **UAT:** `AWS_Secrets_Uat`
+3.  **PROD:** `AWS_Secrets_Prod`
 
-### Step 2: Configure Integration Credentials in AWS Secrets Manager (Tenant-Side)
-For target systems (like Active Directory, ServiceNow, etc.), store their service account credentials inside your **AWS Secrets Manager** vaults:
-1.  **DEV:** Store in AWS Secret container `AWS_Secrets_Dev`
-2.  **UAT:** Store in AWS Secret container `AWS_Secrets_Uat`
-3.  **PROD:** Store in AWS Secret container `AWS_Secrets_Prod`
-
-In your Git configuration JSON templates, refer to these credentials using the vault path (e.g., `"password": "secrets://AWS_Secrets_Dev/AD_ServiceAccount/password"`). SailPoint will dynamically retrieve the credentials from AWS at connection time.
+### Step 2: Configure GitHub Repository Secrets
+Add your target tenant endpoints under `Settings` -> `Secrets and variables` -> `Actions` -> `Repository secrets`:
+*   `DEV_TENANT_URL` & `DEV_CLIENT_ID` & `DEV_CLIENT_SECRET`
+*   `UAT_TENANT_URL` & `UAT_CLIENT_ID` & `UAT_CLIENT_SECRET`
+*   `PROD_TENANT_URL` & `PROD_CLIENT_ID` & `PROD_CLIENT_SECRET`
 
 ---
 
 ## 5. Repository Directory Structure
 
 ```text
-SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
+WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
 ├── .github/
 │   └── workflows/
 │       ├── deploy.yml            # Dynamic deployment pipeline
@@ -156,7 +154,24 @@ SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
 
 ---
 
-## 6. Script Executions
+## 6. Upgrading the SailPoint CLI Version
+
+When SailPoint releases a new CLI version, your GitHub Actions workflow runs will display a yellow warning banner:
+`A new version of SailPoint CLI is available! (Current: 2.2.12, Latest: X.X.X).`
+
+To upgrade the CLI version used by the pipeline:
+1. Open the files **`.github/workflows/deploy.yml`** and **`.github/workflows/export.yml`** in your editor.
+2. Locate the `env` block at the top of both files:
+   ```yaml
+   env:
+     SAIL_CLI_VERSION: "2.2.12"
+   ```
+3. Change the `"2.2.12"` value to the new release version (e.g. `"2.2.13"`).
+4. Save, commit, and push the changes to GitHub. The runner will automatically download and utilize the new version on the next run!
+
+---
+
+## 7. Script Executions
 
 ### Running Deployments Locally (`deploy_local.ps1`)
 To test a configuration locally on your laptop without pushing to GitHub, you can execute the PowerShell script:
