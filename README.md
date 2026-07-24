@@ -131,7 +131,37 @@ Add your AWS connection keys under `Settings` -> `Secrets and variables` -> `Act
 
 ---
 
-## 5. Script Executions
+## 5. Repository Directory Structure
+
+```text
+WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
+├── .github/
+│   └── workflows/
+│       ├── deploy.yml            # Dynamic deployment pipeline
+│       ├── deploy_connectors.yml # SaaS Custom connector uploader
+│       ├── export.yml            # Sync tenant config back to Git
+│       └── validate.yml          # Pull request linting/syntax validator
+├── config/
+│   ├── access-profiles/          # Access profile blueprints
+│   ├── applications/             # Configured system integrations
+│   ├── branding/                 # Holds branding-meta.json & logo.png
+│   ├── identity-profiles/        # Identity schema attributes
+│   ├── policies/                 # Separation of Duties governance
+│   ├── roles/                    # Role and provisioning models
+│   ├── rules/                    # Custom target execution rules
+│   ├── sources/                  # Active Directory, Workday, etc.
+│   ├── transforms/               # Attribute mappings and transforms
+│   └── workflows/                # Dynamic orchestration flows
+├── connectors/                   # Custom SaaS connector packages
+├── dr-snapshots/                 # Disaster recovery configuration backups
+├── environments/                 # JSON dynamic token replacement files
+├── exports/                      # Holds SailPoint_GitOps_CICD_Architecture.docx
+└── scripts/                      # deploy_cli.sh, deploy_local.ps1, export.sh
+```
+
+---
+
+## 6. Script Executions
 
 ### Running Deployments Locally (`deploy_local.ps1`)
 To test a configuration locally on your laptop without pushing to GitHub, you can execute the PowerShell script:
