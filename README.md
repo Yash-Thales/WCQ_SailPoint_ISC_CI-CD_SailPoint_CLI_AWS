@@ -12,10 +12,10 @@ If you are a new developer onboarding to this project, follow this 3-step guide 
 Open your terminal and run:
 ```bash
 # 1. Clone the repository to your computer
-git clone https://github.com/Yash-Thales/WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS.git
+git clone https://github.com/Yash-Thales/SailPoint_ISC_CI-CD_SailPoint_CLI_AWS.git
 
 # 2. Enter the repository folder
-cd WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS
+cd SailPoint_ISC_CI-CD_SailPoint_CLI_AWS
 
 # 3. Switch to the dev branch (where you will do your testing)
 git checkout dev
@@ -134,7 +134,7 @@ Add your AWS connection keys under `Settings` -> `Secrets and variables` -> `Act
 ## 5. Repository Directory Structure
 
 ```text
-WCQ_SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
+SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
 ├── .github/
 │   └── workflows/
 │       ├── deploy.yml            # Dynamic deployment pipeline
