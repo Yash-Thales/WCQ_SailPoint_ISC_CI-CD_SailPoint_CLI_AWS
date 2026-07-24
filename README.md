@@ -57,28 +57,28 @@ graph TD
         A[Developer Edits Configs]:::dev --> B[git push / PR]:::dev
     end
 
-    subgraph GitHub ["2. GitHub Repositories"]
+    subgraph GitHub ["2. GitHub Actions (Auth via GitHub Secrets)"]
         B --> C{Branch Target?}:::git
         C -- dev branch --> D[DEV Runner]:::git
         C -- uat branch --> E[UAT Runner <br>1 Reviewer Gate]:::git
         C -- main branch --> F[PROD Runner <br>2 Reviewer Gates]:::git
+        Sec[GitHub Secrets <br>Tenant URLs & PAT Keys]:::git -.-> Runner
     end
 
     subgraph Runner ["3. GitHub Actions Execution"]
         D & E & F --> G[Validate JSON Syntax]:::pipeline
-        G --> H[Install SailPoint CLI]:::pipeline
-        H --> I[Configure AWS Credentials]:::pipeline
+        G --> H[Install SailPoint CLI <br>Pinned to 2.2.12]:::pipeline
+        H --> I[Execute deploy.sh]:::pipeline
     end
 
-    subgraph SecretVault ["4. Secrets Manager"]
-        I --> J[Fetch Secret JSON <br>sailpoint-config-*]:::aws
-        J --> K[Mask Secret Values <br>::add-mask::]:::aws
+    subgraph Deploy ["4. SailPoint Tenant & Vault Integration"]
+        I --> J[Update UI Branding <br>REST API PUT /v3/brandings]:::sp
+        I --> K[Import Config Package <br>sail spconfig import]:::sp
+        K -.-> L[Tenant resolves AD/ServiceNow <br>credentials at runtime]:::sp
     end
 
-    subgraph Deploy ["5. SailPoint Integration"]
-        K --> L[deploy.sh Compilation]:::sp
-        L --> M[Update UI Branding <br>REST API PUT /v3/brandings]:::sp
-        M --> N[Import Config Package <br>sail spconfig import]:::sp
+    subgraph SecretVault ["5. AWS Secrets Manager"]
+        L ===> M[AWS Secrets Manager Vaults <br>AWS_Secrets_Dev / UAT / Prod]:::aws
     end
 ```
 
@@ -90,7 +90,7 @@ graph TD
 
 *   **Always-Incremental Deployments:** The deployment script compares Git history differences (`git diff HEAD~1`) and tokenizes/pushes *only* the specific JSON files that changed. This prevents bulk-import timeouts and API 504 gateway errors.
 *   **Fail-Fast JSON Validation:** Before executing any API calls or installing the CLI, the pipeline runs local syntax validation on all configurations. If a syntax error (like a missing comma) exists, the run halts immediately.
-*   **Zero-Keys at Rest & Masking Security:** All passwords and API keys are stored encrypted in AWS Secrets Manager. Secrets are decrypted only in the runner's memory during compilation and are immediately masked in the workflow logs (hidden as `***`).
+*   **Zero-Keys at Rest:** No plain text credentials (passwords, client secrets) are stored in the git repository. Tenant connection parameters are retrieved securely via **GitHub Encrypted Secrets**. All source-specific target credentials (e.g. AD service account passwords) are stored in **AWS Secrets Manager** and resolved dynamically by the SailPoint tenant at runtime.
 *   **SaaS Connector Uploads:** A dedicated workflow (`deploy_connectors.yml`) packages and uploads custom web/SaaS connectors utilizing the official `sailpoint-oss/upload-saas-connector@v1` Action.
 *   **Dynamic Version-Pinned CLI:** Pinned to version `2.2.12` for build repeatability, with an automated update checker warning you in the UI when a new release is available from SailPoint.
 
@@ -102,32 +102,27 @@ The pipeline dynamically maps branches to environments and enforces deployment a
 
 | Git Branch | Target Tenant | Approval Gates | Authentication Source |
 | :--- | :--- | :--- | :--- |
-| **`dev`** | DEV/Sandbox | **Direct Deploy** (Immediate) | AWS Secret: `sailpoint-config-dev` |
-| **`uat`** | UAT/Staging | **1 Required Reviewer** | AWS Secret: `sailpoint-config-uat` |
-| **`main`** | PROD/Production | **2 Required Reviewers** | AWS Secret: `sailpoint-config-prod` |
+| **`dev`** | DEV/Sandbox | **Direct Deploy** (Immediate) | GitHub Secrets (`DEV_CLIENT_ID`, etc.) |
+| **`uat`** | UAT/Staging | **1 Required Reviewer** | GitHub Secrets (`UAT_CLIENT_ID`, etc.) |
+| **`main`** | PROD/Production | **2 Required Reviewers** | GitHub Secrets (`PROD_CLIENT_ID`, etc.) |
 
 ---
 
 ## 4. Secrets Configuration
 
-### Step 1: Configure AWS Secrets Manager
-For each environment, create a Secret in your AWS Secrets Manager console using the **Key/value pairs** option:
-1.  **DEV:** Secret named `sailpoint-config-dev`
-2.  **UAT:** Secret named `sailpoint-config-uat`
-3.  **PROD:** Secret named `sailpoint-config-prod`
+### Step 1: Configure Tenant Connection Credentials in GitHub Secrets
+To allow the GitHub Actions runner to authenticate with your SailPoint tenants, add the following Repository Secrets in GitHub (`Settings` -> `Secrets and variables` -> `Actions` -> `Repository secrets`):
+*   `DEV_TENANT_URL`, `DEV_CLIENT_ID`, `DEV_CLIENT_SECRET`
+*   `UAT_TENANT_URL`, `UAT_CLIENT_ID`, `UAT_CLIENT_SECRET`
+*   `PROD_TENANT_URL`, `PROD_CLIENT_ID`, `PROD_CLIENT_SECRET`
 
-Inside each secret, define the following keys:
-*   `SAIL_BASE_URL`: Your SailPoint tenant URL (e.g. `https://tenant.api.identitynow.com`).
-*   `SAIL_CLIENT_ID`: Your SailPoint API Client ID.
-*   `SAIL_CLIENT_SECRET`: Your SailPoint API Client Secret.
-*   *Other config secrets* (e.g., `AD_ADMIN_PASSWORD`): Place them here! The pipeline automatically retrieves and tokenizes them.
+### Step 2: Configure Integration Credentials in AWS Secrets Manager (Tenant-Side)
+For target systems (like Active Directory, ServiceNow, etc.), store their service account credentials inside your **AWS Secrets Manager** vaults:
+1.  **DEV:** Store in AWS Secret container `AWS_Secrets_Dev`
+2.  **UAT:** Store in AWS Secret container `AWS_Secrets_Uat`
+3.  **PROD:** Store in AWS Secret container `AWS_Secrets_Prod`
 
-### Step 2: Configure GitHub Repository Secrets
-Add your AWS connection keys under `Settings` -> `Secrets and variables` -> `Actions` -> `Repository secrets`:
-*   `AWS_ACCESS_KEY_ID`
-*   `AWS_SECRET_ACCESS_KEY`
-
-*(Note: Change the `AWS_REGION` variable at the top of the `.yml` workflow files to match your target AWS region).*
+In your Git configuration JSON templates, refer to these credentials using the vault path (e.g., `"password": "secrets://AWS_Secrets_Dev/AD_ServiceAccount/password"`). SailPoint will dynamically retrieve the credentials from AWS at connection time.
 
 ---
 
