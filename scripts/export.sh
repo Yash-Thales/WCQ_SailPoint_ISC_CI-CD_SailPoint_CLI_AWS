@@ -56,67 +56,23 @@ else
   echo "⚠️ Warning: Failed to retrieve default branding. Continuing with general configs."
 fi
 
-# 2. Trigger configuration export job
-echo "Triggering SailPoint sp-config export job..."
-EXPORT_PAYLOAD='{
-  "description": "GitOps automated export",
-  "includeTypes": [
-    "ACCESS_PROFILE",
-    "CAMPAIGN_FILTER",
-    "CONNECTOR_RULE",
-    "FORM_DEFINITION",
-    "GOVERNANCE_GROUP",
-    "IDENTITY_PROFILE",
-    "ROLE",
-    "RULE",
-    "SOD_POLICY",
-    "SOURCE",
-    "TRANSFORM",
-    "TRIGGER_SUBSCRIPTION",
-    "WORKFLOW"
-  ]
-}'
-
-EXPORT_RESPONSE=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -X POST "${SAIL_BASE_URL}/beta/sp-config/export" \
-  -d "$EXPORT_PAYLOAD")
-
-EXPORT_BODY=$(echo "$EXPORT_RESPONSE" | sed '$d')
-EXPORT_STATUS=$(echo "$EXPORT_RESPONSE" | tail -n1)
-
-if [[ "$EXPORT_STATUS" -ne 200 && "$EXPORT_STATUS" -ne 202 ]]; then
-  echo "❌ Error: Triggering export job failed with HTTP status $EXPORT_STATUS"
-  echo "Response: $EXPORT_BODY"
-  exit 1
-fi
-
-JOB_ID=$(echo "$EXPORT_BODY" | jq -r '.jobId')
-echo "Export Job ID: $JOB_ID"
-
-# Poll status
-STATUS="PENDING"
-echo "Polling export job status..."
-while [[ "$STATUS" == "PENDING" || "$STATUS" == "IN_PROGRESS" || "$STATUS" == "NOT_STARTED" ]]; do
-  sleep 5
-  JOB_STATUS_RESP=$(curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
-    "${SAIL_BASE_URL}/beta/sp-config/export/${JOB_ID}")
-  STATUS=$(echo "$JOB_STATUS_RESP" | jq -r '.status')
-  echo "Job status: $STATUS"
-done
-
-if [[ "$STATUS" != "COMPLETE" ]]; then
-  echo "❌ Error: Export job failed with status $STATUS"
-  exit 1
-fi
-
-# Download configuration
-echo "Downloading export configuration package..."
-EXPORT_FILE="exports/sp-config-export.json"
+# 2. Trigger configuration export job using SailPoint CLI
+echo "Triggering SailPoint sp-config export job using SailPoint CLI..."
 mkdir -p exports
-curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
-  "${SAIL_BASE_URL}/beta/sp-config/export/${JOB_ID}/download" \
-  -o "$EXPORT_FILE"
+# Clean old exports
+rm -f exports/*.json
+
+# Run CLI export (the CLI will automatically wait and download the exported JSON package into exports/)
+sail spconfig export --include ACCESS_PROFILE,CAMPAIGN_FILTER,CONNECTOR_RULE,FORM_DEFINITION,GOVERNANCE_GROUP,IDENTITY_PROFILE,ROLE,RULE,SOD_POLICY,SOURCE,TRANSFORM,TRIGGER_SUBSCRIPTION,WORKFLOW --description "GitOps automated export" --folderPath exports
+
+# Rename the downloaded job file to the standard name used by the rest of the script
+EXPORT_FILE="exports/sp-config-export.json"
+DOWNLOADED_FILE=$(find exports -name "*.json" | head -n 1)
+if [[ -z "$DOWNLOADED_FILE" ]]; then
+  echo "❌ Error: Failed to find downloaded configuration export from SailPoint CLI."
+  exit 1
+fi
+mv "$DOWNLOADED_FILE" "$EXPORT_FILE"
 
 echo "✔ Export package downloaded to $EXPORT_FILE"
 

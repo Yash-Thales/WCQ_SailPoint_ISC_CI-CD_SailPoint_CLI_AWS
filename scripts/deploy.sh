@@ -153,42 +153,14 @@ fi
 
 echo "✔ Compiled $OBJECT_COUNT objects to deploy."
 
-# 3. Perform sp-config import
-echo "Submitting import package to SailPoint..."
-IMPORT_INIT=$(curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -F "data=@${MERGED_OBJECTS_FILE}" \
-  -X POST "${SAIL_BASE_URL}/beta/sp-config/import")
+# 3. Perform sp-config import using SailPoint CLI
+echo "Submitting import package to SailPoint using SailPoint CLI..."
+mkdir -p dr-snapshots
 
-IMPORT_JOB_ID=$(echo "$IMPORT_INIT" | jq -r '.jobId')
-echo "Import Job ID: $IMPORT_JOB_ID"
-
-# Poll status
-IMPORT_STATUS="PENDING"
-echo "Polling import job status..."
-while [[ "$IMPORT_STATUS" == "PENDING" || "$IMPORT_STATUS" == "IN_PROGRESS" || "$IMPORT_STATUS" == "NOT_STARTED" ]]; do
-  sleep 5
-  IMPORT_STATUS_RESP=$(curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
-    "${SAIL_BASE_URL}/beta/sp-config/import/${IMPORT_JOB_ID}")
-  IMPORT_STATUS=$(echo "$IMPORT_STATUS_RESP" | jq -r '.status')
-  echo "Job status: $IMPORT_STATUS"
-done
-
-if [[ "$IMPORT_STATUS" != "COMPLETE" ]]; then
-  echo "❌ Error: Import job failed with status $IMPORT_STATUS"
-  echo "Fetching detailed error results..."
-  curl -s -H "Authorization: Bearer $ACCESS_TOKEN" "${SAIL_BASE_URL}/beta/sp-config/import/${IMPORT_JOB_ID}/download" | jq . || true
-  exit 1
-fi
+# Execute CLI import (this will automatically wait and download the results into dr-snapshots)
+sail spconfig import --filePath "${MERGED_OBJECTS_FILE}" --wait --folderPath dr-snapshots
 
 echo "✔ Import job completed successfully."
-
-# Save import results snapshot
-mkdir -p dr-snapshots
-curl -s -f -H "Authorization: Bearer $ACCESS_TOKEN" \
-  "${SAIL_BASE_URL}/beta/sp-config/import/${IMPORT_JOB_ID}" \
-  -o "dr-snapshots/import-result-${TARGET_ENV}-${IMPORT_JOB_ID}.json"
-
-echo "✔ Results logged to dr-snapshots/import-result-${TARGET_ENV}-${IMPORT_JOB_ID}.json."
 echo "========================================="
 echo "Deployment Completed Successfully!"
 echo "========================================="

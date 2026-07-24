@@ -16,6 +16,9 @@ on:
 permissions:
   contents: write
 
+env:
+  SAIL_CLI_VERSION: "2.2.12"
+
 jobs:
   export:
     runs-on: ubuntu-latest
@@ -49,6 +52,24 @@ jobs:
             echo "SAIL_CLIENT_ID=${{ secrets.DEV_CLIENT_ID || secrets.SAIL_CLIENT_ID }}" >> $GITHUB_ENV
             echo "SAIL_CLIENT_SECRET=${{ secrets.DEV_CLIENT_SECRET || secrets.SAIL_CLIENT_SECRET }}" >> $GITHUB_ENV
           fi
+
+      - name: Install SailPoint CLI Engine
+        run: |
+          LATEST_VERSION=$(curl -s "https://api.github.com/repos/sailpoint-oss/sailpoint-cli/releases/latest" | jq -r '.tag_name')
+          HARDCODED_VERSION="${{ env.SAIL_CLI_VERSION }}"
+          
+          LATEST_CLEAN=$(echo "$LATEST_VERSION" | sed 's/v//')
+          HARDCODED_CLEAN=$(echo "$HARDCODED_VERSION" | sed 's/v//')
+          
+          echo "Hardcoded version: $HARDCODED_CLEAN"
+          echo "Latest available version: $LATEST_CLEAN"
+          
+          if [ "$HARDCODED_CLEAN" != "$LATEST_CLEAN" ]; then
+            echo "::warning::A new version of SailPoint CLI is available! (Current: $HARDCODED_CLEAN, Latest: $LATEST_CLEAN). Consider updating the env.SAIL_CLI_VERSION variable in your workflow file."
+          fi
+          
+          curl -L -sS "https://github.com/sailpoint-oss/sailpoint-cli/releases/download/${HARDCODED_VERSION}/sail_${HARDCODED_CLEAN}_linux_amd64.deb" -o sailpoint-cli.deb
+          sudo dpkg -i sailpoint-cli.deb
 
       - name: Run Export Script
         run: |
