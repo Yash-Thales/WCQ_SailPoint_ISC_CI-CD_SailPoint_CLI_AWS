@@ -76,7 +76,7 @@ graph TD
     end
 
     subgraph Deploy ["5. SailPoint Integration"]
-        K --> L[deploy_cli.sh Compilation]:::sp
+        K --> L[deploy.sh Compilation]:::sp
         L --> M[Update UI Branding <br>REST API PUT /v3/brandings]:::sp
         M --> N[Import Config Package <br>sail spconfig import]:::sp
     end
@@ -156,7 +156,7 @@ SailPoint_ISC_CI-CD_SailPoint_CLI_AWS/
 ├── dr-snapshots/                 # Disaster recovery configuration backups
 ├── environments/                 # JSON dynamic token replacement files
 ├── exports/                      # Holds SailPoint_GitOps_CICD_Architecture.docx
-└── scripts/                      # deploy_cli.sh, deploy_local.ps1, export.sh
+└── scripts/                      # deploy.sh, deploy_local.ps1, export.sh
 ```
 
 ---
